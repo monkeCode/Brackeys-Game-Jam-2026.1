@@ -1,11 +1,13 @@
 
+using System;
+
 namespace Buildings
 {
     public interface IBuilding
     {
         public int Health { get; }
 
-        public float UnitProductionTime { get; }
+        public int UnitProductionTime { get; }
 
         public int Cost { get; }
 
@@ -15,7 +17,10 @@ namespace Buildings
 
         public void Repair(int amount);
 
-        public void SpawnUnit();
+        public void SpawnUnit()
+        {
+            
+        }
 
         public void Destroy();
 
