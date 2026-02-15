@@ -13,8 +13,6 @@ namespace Buildings
 
         public Units.IUnit Unit { get; }
 
-        public void TakeDamage(int damage);
-
         public void Repair(int amount);
 
         public void SpawnUnit()

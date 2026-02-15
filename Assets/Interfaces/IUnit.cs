@@ -17,9 +17,7 @@ namespace Units
         public float AttackCooldown { get; }
         public UnitType Type { get;  }
 
-        public void TakeDamage(int damage);
-
-        public void AttackTarget(IUnit target);
+        public void AttackTarget(IDamageable target);
 
         public void MoveTo(float x, float y);
 

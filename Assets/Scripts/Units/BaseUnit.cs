@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Units
 {
-    public class BaseUnit : MonoBehaviour, IUnit
+    public class BaseUnit : MonoBehaviour, IUnit, IDamageable
     {
 
         [SerializeField] protected BaseUnitObject unitObject;
@@ -31,7 +31,7 @@ namespace Units
             // Handle death logic here (e.g., play animation, remove from game, etc.)
         }
 
-        public void AttackTarget(IUnit target)
+        public void AttackTarget(IDamageable target)
         {
             throw new System.NotImplementedException();
         }

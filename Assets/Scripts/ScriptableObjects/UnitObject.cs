@@ -20,7 +20,8 @@ namespace Units
         [field: SerializeField]public float AttackCooldown {get; set;}
 
         [field: SerializeField] public UnitType Type {get; set;}
-        public void AttackTarget(IUnit target)
+        
+        public void AttackTarget(IDamageable target)
         {
             throw new System.NotImplementedException();
         }
