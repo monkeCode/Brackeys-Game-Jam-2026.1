@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Buildings
@@ -55,6 +54,15 @@ namespace Buildings
             {
                 Health = MaxHealth;
             }
+        }
+
+        void OnEnable()
+        {
+            Timer.Instance.onTimerUpdate += UpdateTimeTick;
+        }
+        void OnDisable()
+        {
+            Timer.Instance.onTimerUpdate -= UpdateTimeTick;
         }
     }
 }
