@@ -57,5 +57,14 @@ namespace Buildings
                 Health = MaxHealth;
             }
         }
+
+        void OnEnable()
+        {
+            Timer.Instance.onTimerUpdate += UpdateTimeTick;
+        }
+        void OnDisable()
+        {
+            Timer.Instance.onTimerUpdate -= UpdateTimeTick;
+        }
     }
 }

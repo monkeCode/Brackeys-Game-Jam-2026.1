@@ -4,10 +4,10 @@ using UnityEngine;
 
 class Timer: MonoBehaviour
 {
-    public float time = 0f;
+    public float _update_time = 1f;
     public bool isRunning = false;
 
-    public Action<float> onTimerUpdate;
+    public Action onTimerUpdate;
 
     public static Timer Instance { get; private set; }
 
@@ -30,15 +30,14 @@ class Timer: MonoBehaviour
     {
         while (isRunning)
         {
-            time += tickTime;
-            onTimerUpdate?.Invoke(time);
+            onTimerUpdate?.Invoke();
             yield return new WaitForSeconds(tickTime);
         }
     }
 
     private void Start()
     {
-        _timerCoroutine =  StartCoroutine(TimeUpdate(1f));
+        _timerCoroutine =  StartCoroutine(TimeUpdate(_update_time));
     }
 
 
@@ -49,12 +48,6 @@ class Timer: MonoBehaviour
 
     public void StopTimer()
     {
-        isRunning = false;
-    }
-
-    public void ResetTimer()
-    {
-        time = 0f;
         isRunning = false;
     }
 
