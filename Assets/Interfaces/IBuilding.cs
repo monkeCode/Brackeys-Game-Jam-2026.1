@@ -1,34 +1,34 @@
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Buildings
 {
+
+    public interface IBuildingAction
+    {
+        public int ActionCooldownTime { get; }
+        public void DoAction(GameObject building);
+
+        public void UpdateTimeTick(GameObject building);
+    }    
+
     public interface IBuilding
     {
         public int Health { get; }
-
-        public int UnitProductionTime { get; }
 
         public int Cost { get; }
 
         public Vector2Int Size { get; }
 
-        public Units.IUnit Unit { get; }
+        public IReadOnlyList<IBuildingAction> Actions {get; }
 
         public void Repair(int amount);
 
-        public void SpawnUnit()
-        {
-
-        }
+        public void UpdateTimeTick();
 
         public void Destroy();
 
-        public void Merge(IBuilding other);
-
-        public void setTransparentColor(Boolean available);
-
-        public void setNormalColor();
     }
 }

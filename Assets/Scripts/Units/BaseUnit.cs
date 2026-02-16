@@ -1,21 +1,23 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Units
 {
     public class BaseUnit : MonoBehaviour, IUnit, IDamageable
     {
+        [field: SerializeField] public virtual int Health { get; protected set;}
+        [field: SerializeField]public virtual int Attack { get; protected set;}
+        [field: SerializeField] public virtual float Speed { get; protected set;}
+        [field: SerializeField] public virtual float AttackRange { get; protected set;}
 
-        [SerializeField] protected BaseUnitObject unitObject;
+        [field: SerializeField] public virtual int Armor { get; protected set;}
+        [field: SerializeField] public virtual float AttackCooldown { get; protected set;}
+        [field: SerializeField] public virtual UnitType Type { get; protected set;}
 
-        public virtual int Health { get => unitObject.Health; protected set => unitObject.Health = value; }
-        public virtual int Attack => unitObject.Attack;
-        public virtual float Speed => unitObject.Speed;
-        public virtual float AttackRange => unitObject.AttackRange;
+        [field: SerializeField] public virtual Command Command {get; protected set;}
 
-        public virtual int Armor => unitObject.Armor;
-        public virtual float AttackCooldown => unitObject.AttackCooldown;
-        public virtual UnitType Type => unitObject.Type;
+        [field: SerializeField]  public virtual int MaxHealth {get; protected set;}
 
         public virtual void TakeDamage(int damage)
         {
