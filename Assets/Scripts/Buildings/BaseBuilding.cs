@@ -1,29 +1,30 @@
 using System.Collections.Generic;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Buildings
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    class BaseBuilding : MonoBehaviour, IBuilding, IDamageable
+    public class BaseBuilding : MonoBehaviour, IBuilding, IDamageable
     {
-        [field: SerializeField]  public int Health { get; protected set;}
+        [field: SerializeField] public int Health { get; protected set; }
 
-        [field: SerializeField]  public int Cost { get; protected set;}
+        [field: SerializeField] public int Cost { get; protected set; }
 
-        [field: SerializeField]  public Vector2Int Size { get; protected set;}
+        [field: SerializeField] public Vector2Int Size { get; protected set; }
 
-        public IReadOnlyList<IBuildingAction> Actions { get => actions;}
+        public IReadOnlyList<IBuildingAction> Actions { get => actions; }
 
-        [field: SerializeField]  public Command Command { get; protected set;}
+        [field: SerializeField] public Command Command { get; protected set; }
 
-        [field: SerializeField]  public int MaxHealth {get;protected set;}
+        [field: SerializeField] public int MaxHealth { get; protected set; }
 
         [SerializeField] protected List<BuildingAction> actions;
 
 
         private SpriteRenderer sp;
-        public SpriteRenderer Sprite {get => sp = sp != null ? sp : GetComponent<SpriteRenderer>();}
+        public SpriteRenderer Sprite { get => sp = sp != null ? sp : GetComponent<SpriteRenderer>(); }
 
         public void Destroy()
         {
