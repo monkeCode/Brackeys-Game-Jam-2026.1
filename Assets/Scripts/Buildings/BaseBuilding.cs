@@ -66,5 +66,35 @@ namespace Buildings
         {
             Timer.Instance.onTimerUpdate -= UpdateTimeTick;
         }
+
+        private void OnDrawGizmos()
+        {
+            for (int x = 0; x < Size.x; x++)
+            {
+                for (int y = 0; y < Size.y; y++)
+                {
+                    if ((x + y) % 2 == 0) Gizmos.color = new Color(0f, 1f, 0f, 0.3f);
+                    else Gizmos.color = new Color(1f, 0f, 0f, 0.3f);
+
+                    Gizmos.DrawCube(transform.position + new Vector3(x, y, 0), new Vector3(1, 1, .1f));
+                }
+            }
+        }
+
+        // private void OnDrawGizmos()
+        // {
+        //     int xd, yd;
+        //     for (int x = 0; x < Size.x; x++)
+        //     {
+        //         if (x % 2 != 0) xd = (x + 1) / 2; else xd = -x / 2;
+        //         for (int y = 0; y < Size.y; y++)
+        //         {
+        //             if (y % 2 != 0) yd = (y + 1) / 2; else yd = -y / 2;
+        //             if ((x + y) % 2 == 0) Gizmos.color = new Color(0.88f, 0f, 1f, 0.3f);
+        //             else Gizmos.color = new Color(1f, 0.68f, 0f, 0.3f);
+        //             Gizmos.DrawCube(transform.position + new Vector3(xd, yd, 0), new Vector3(1, 1, .1f));
+        //         }
+        //     }
+        // }
     }
 }
