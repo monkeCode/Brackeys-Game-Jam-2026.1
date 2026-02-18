@@ -49,7 +49,12 @@ public class BuildingGrid : MonoBehaviour
 
     private void Update()
     {
-        if (flyingBuilding != null && !EventSystem.current.IsPointerOverGameObject())
+        if (Mouse.current.rightButton.IsPressed())
+        {
+            Destroy(flyingBuilding);
+            building = null;
+        }
+        else if (flyingBuilding != null && !EventSystem.current.IsPointerOverGameObject())
         {
             var groundPlane = new Plane(Vector3.forward, Vector3.zero);
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -74,7 +79,7 @@ public class BuildingGrid : MonoBehaviour
                 flyingBuilding.transform.position = new Vector3(x, y, 0);
                 foreach (var sr in flyingBuildingSprite.GetComponentsInChildren<SpriteRenderer>())
                 {
-                    sr.color = setColor(available);
+                    sr.color = SetColor(available);
                 }
                 // flyingBuildingSprite.GetComponent<SpriteRenderer>().color = setColor(available);
 
@@ -86,7 +91,7 @@ public class BuildingGrid : MonoBehaviour
         }
     }
 
-    private Color setColor(Boolean available)
+    private Color SetColor(Boolean available)
     {
         if (available)
         {
@@ -147,6 +152,13 @@ public class BuildingGrid : MonoBehaviour
 
     private void PlaceBuilding(int placeX, int placeY)
     {
+        if (ResourcesManager.Instance != null)
+        {
+            if (!ResourcesManager.Instance.SpendMoney(building.Cost))
+            {
+                return;
+            }
+        }
         building.transform.position = new Vector3(placeX, placeY, 0);
         Instantiate(building);
         for (int x = 0; x < building.Size.x; x++)

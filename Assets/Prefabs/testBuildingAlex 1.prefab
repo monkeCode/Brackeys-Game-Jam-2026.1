@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 412402381852613047}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 5, z: 0}
+  m_LocalPosition: {x: 7, y: 7, z: 0}
   m_LocalScale: {x: 10, y: 5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.BaseBuilding
   <Health>k__BackingField: 100
-  <Cost>k__BackingField: 100
+  <Cost>k__BackingField: 500
   <Size>k__BackingField: {x: 2, y: 1}
   <Command>k__BackingField: 0
   <MaxHealth>k__BackingField: 100
