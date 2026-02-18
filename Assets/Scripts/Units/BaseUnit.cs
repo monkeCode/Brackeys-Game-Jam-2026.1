@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace Units
 {
+    [RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class BaseUnit : MonoBehaviour, IUnit, IDamageable
     {
         [field: SerializeField] public virtual int Health { get; protected set;}
@@ -16,6 +18,9 @@ namespace Units
         [field: SerializeField] public virtual Command Command {get; protected set;}
 
         [field: SerializeField]  public virtual int MaxHealth {get; protected set;}
+
+
+        protected Rigidbody2D rb;
 
         public virtual void TakeDamage(int damage)
         {
@@ -44,11 +49,12 @@ namespace Units
         private void Start()
         {
             // Initialize unit properties here
+            rb = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
         {
-            // Handle unit behavior here (e.g., movement, attacking, etc.)
+            rb.linearVelocity = Vector2.right * Speed;
         }
 
     }
