@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class BuildingGrid : MonoBehaviour
 {
@@ -91,7 +92,7 @@ public class BuildingGrid : MonoBehaviour
         }
     }
 
-    private Color SetColor(Boolean available)
+    private Color SetColor(bool available)
     {
         if (available)
         {

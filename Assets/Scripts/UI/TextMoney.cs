@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class TextMoney : MonoBehaviour
 {
     TMP_Text text;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         text = GetComponent<TMP_Text>();
+        ResourcesManager.Instance.OnGoldChanged += UpdateText;
         if (ResourcesManager.Instance != null)
         {
-            ResourcesManager.Instance.OnGoldChanged += UpdateText;
             text.text = ResourcesManager.Instance.money.ToString();
         }
     }
@@ -21,5 +21,14 @@ public class TextMoney : MonoBehaviour
     void UpdateText(int money)
     {
         text.text = money.ToString();
+    }
+
+    void OnEnable()
+    {
+        ResourcesManager.Instance.OnGoldChanged += UpdateText;
+    }
+    void OnDestroy()
+    {
+        ResourcesManager.Instance.OnGoldChanged -= UpdateText;
     }
 }

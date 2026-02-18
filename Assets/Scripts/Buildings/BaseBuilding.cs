@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Buildings
 {
-    [RequireComponent(typeof(SpriteRenderer))]
     public class BaseBuilding : MonoBehaviour, IBuilding, IDamageable
     {
         [field: SerializeField] public int Health { get; protected set; }
@@ -24,7 +23,7 @@ namespace Buildings
 
 
         private SpriteRenderer sp;
-        public SpriteRenderer Sprite { get => sp = sp != null ? sp : GetComponent<SpriteRenderer>(); }
+        //public SpriteRenderer Sprite { get => sp = sp != null ? sp : GetComponent<SpriteRenderer>(); }
 
         public void Destroy()
         {
