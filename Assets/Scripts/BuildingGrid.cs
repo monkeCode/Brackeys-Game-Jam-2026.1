@@ -85,7 +85,7 @@ public class BuildingGrid : MonoBehaviour
 
                 // if (x < -building.Size.x / 2 || x > GridSize.x - (building.Size.x + 1) / 2) available = false;
                 // if (y < -building.Size.y / 2 || y > GridSize.y - (building.Size.y + 1) / 2) available = false;
-                status = IsPlaceTaken(x, y);
+                if (available) status = IsPlaceTaken(x, y);
                 if (available && status == PlaceTaken.PartiallyTaken) available = false;
 
                 flyingBuilding.transform.position = new Vector3(x, y, 0);
