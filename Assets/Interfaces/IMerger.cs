@@ -3,7 +3,7 @@ namespace Merger
     
     public interface IMerger
     {
-        public void Merge(Buildings.IBuilding building1, Buildings.IBuilding building2);
+        public void Merge(Buildings.BaseBuilding building1, Buildings.BaseBuilding building2);
     }
 
 }

@@ -1,3 +1,4 @@
+using Merger;
 using UnityEngine;
 
 namespace Units
@@ -56,6 +57,5 @@ namespace Units
         {
             rb.linearVelocity = Vector2.right * Speed;
         }
-
     }
 }

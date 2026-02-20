@@ -1,11 +1,14 @@
 using System.Collections.Generic;
+using System.Linq;
+using Merger;
 using Unity.Collections;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Buildings
 {
-    public class BaseBuilding : MonoBehaviour, IBuilding, IDamageable
+    public class BaseBuilding : MonoBehaviour, IBuilding, IDamageable, IMergable< BaseBuilding>
     {
         [field: SerializeField] public int Health { get; protected set; }
 
@@ -21,9 +24,10 @@ namespace Buildings
 
         [SerializeField] protected List<BuildingAction> actions;
 
-
-        private SpriteRenderer sp;
-        //public SpriteRenderer Sprite { get => sp = sp != null ? sp : GetComponent<SpriteRenderer>(); }
+        [field: SerializeField] public SpriteRenderer Lb {get; private set;}
+        [field: SerializeField] public SpriteRenderer Rb {get; private set;}
+        [field: SerializeField] public SpriteRenderer Rt {get; private set;}
+        [field: SerializeField] public SpriteRenderer Lt {get; private set;}
 
         public void Destroy()
         {
@@ -56,6 +60,17 @@ namespace Buildings
                 Health = MaxHealth;
             }
         }
+        
+        private void InitActions()
+        {
+            actions = actions.Select(x => Instantiate(x)).ToList();
+
+        }
+
+        protected void Start()
+        {
+            InitActions();
+        }
 
         void OnEnable()
         {
@@ -80,20 +95,51 @@ namespace Buildings
             }
         }
 
-        // private void OnDrawGizmos()
-        // {
-        //     int xd, yd;
-        //     for (int x = 0; x < Size.x; x++)
-        //     {
-        //         if (x % 2 != 0) xd = (x + 1) / 2; else xd = -x / 2;
-        //         for (int y = 0; y < Size.y; y++)
-        //         {
-        //             if (y % 2 != 0) yd = (y + 1) / 2; else yd = -y / 2;
-        //             if ((x + y) % 2 == 0) Gizmos.color = new Color(0.88f, 0f, 1f, 0.3f);
-        //             else Gizmos.color = new Color(1f, 0.68f, 0f, 0.3f);
-        //             Gizmos.DrawCube(transform.position + new Vector3(xd, yd, 0), new Vector3(1, 1, .1f));
-        //         }
-        //     }
-        // }
+        public void SetActions(ICollection<IBuildingAction> actions)
+        {
+            foreach(var action in this.actions)
+            {
+                Destroy(action);
+            }
+            actions.Clear();
+            this.actions = actions.Select(x => Instantiate(x as BuildingAction)).ToList();
+        }
+
+        public void AddAction(IBuildingAction action)
+        {
+            actions.Add(Instantiate(action as BuildingAction));
+        }
+
+        public void Merge(BaseBuilding first, BaseBuilding second)
+        {
+            MaxHealth = UnityEngine.Random.Range(math.min(first.MaxHealth, second.MaxHealth), math.max(first.MaxHealth, second.MaxHealth)+1);
+            Command = first.Command;
+
+            float mean = (first.Actions.Count + first.Actions.Count)/2;
+            int actionsCount = (int)UnityEngine.Random.Range(math.min(math.floor(mean)-1,1), math.ceil(mean)+1);
+            var totalActions =  first.Actions.ToList();
+            totalActions.AddRange(second.Actions);
+            List<IBuildingAction> newActions = new();
+
+            for(int i = 0; i < actionsCount;i++)
+            {
+                int index = UnityEngine.Random.Range(0, totalActions.Count);
+                newActions.Add(totalActions[index]);
+                totalActions.RemoveAt(index);
+            }
+
+            static T ChooseOneOf<T>(T one, T two)
+            {
+                if(UnityEngine.Random.value > 0.5)
+                    return one;
+                return two;
+            };
+
+            Lb.sprite = ChooseOneOf(first.Lb.sprite, second.Lb.sprite);
+            Rb.sprite = ChooseOneOf(first.Rb.sprite, second.Rb.sprite);
+            Rt.sprite = ChooseOneOf(first.Rt.sprite, second.Rt.sprite);
+            Lt.sprite = ChooseOneOf(first.Lt.sprite, second.Lt.sprite);
+
+        }
     }
 }
