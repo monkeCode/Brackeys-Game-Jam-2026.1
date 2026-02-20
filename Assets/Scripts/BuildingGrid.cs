@@ -200,7 +200,7 @@ public class BuildingGrid : MonoBehaviour
 
     public void MergeBuildings(BaseBuilding newBuilding, BaseBuilding oldBuilding)
     {
-
+        Instantiate(newBuilding).Merge(newBuilding, oldBuilding);
     }
 
     // private void PlaceBuilding(int placeX, int placeY)

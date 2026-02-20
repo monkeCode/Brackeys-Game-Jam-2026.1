@@ -1512,7 +1512,7 @@ PrefabInstance:
     - target: {fileID: 351879666717378383, guid: 8001a0805e1e9414686cbc9bfcfb0bf5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 5912656012249250308, guid: 5d1bc02759fc57a1391640629466a92c, type: 3}
+      objectReference: {fileID: 4099459171565701675, guid: 88294c80aca459343a7e4543e90536ff, type: 3}
     - target: {fileID: 4161398533992877733, guid: 8001a0805e1e9414686cbc9bfcfb0bf5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
