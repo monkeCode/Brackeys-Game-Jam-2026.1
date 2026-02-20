@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TextMoney : MonoBehaviour
 {
     TMP_Text text;
-    
+
     void Start()
     {
         text = GetComponent<TMP_Text>();
@@ -23,10 +23,6 @@ public class TextMoney : MonoBehaviour
         text.text = money.ToString();
     }
 
-    void OnEnable()
-    {
-        ResourcesManager.Instance.OnGoldChanged += UpdateText;
-    }
     void OnDestroy()
     {
         ResourcesManager.Instance.OnGoldChanged -= UpdateText;

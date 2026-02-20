@@ -15,6 +15,13 @@ public class BuildingGrid : MonoBehaviour
     private BaseBuilding[,] grid;
     private BaseBuilding building;
     private GameObject flyingBuildingSprite;
+    enum PlaceTaken
+    {
+        NotTaken,
+        PartiallyTaken,
+        FullyTaken
+    }
+    PlaceTaken status;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -43,6 +50,10 @@ public class BuildingGrid : MonoBehaviour
         //     flyingBuildingSpriteRenderer.sortingOrder = 100;
         flyingBuilding.transform.localScale = buildingPrefab.transform.localScale;
         flyingBuildingSprite.transform.localScale = gb.localScale;
+        foreach (var sr in flyingBuildingSprite.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.sortingOrder = 100;
+        }
         //     // flyingBuilding.transform.localScale = new Vector3(gb.localScale.x * buildingPrefab.transform.localScale.x, gb.localScale.y * buildingPrefab.transform.localScale.y, gb.localScale.z * buildingPrefab.transform.localScale.z);
         // }
         building = buildingPrefab;
@@ -74,8 +85,8 @@ public class BuildingGrid : MonoBehaviour
 
                 // if (x < -building.Size.x / 2 || x > GridSize.x - (building.Size.x + 1) / 2) available = false;
                 // if (y < -building.Size.y / 2 || y > GridSize.y - (building.Size.y + 1) / 2) available = false;
-
-                if (available && IsPlaceTaken(x, y)) available = false;
+                status = IsPlaceTaken(x, y);
+                if (available && status == PlaceTaken.PartiallyTaken) available = false;
 
                 flyingBuilding.transform.position = new Vector3(x, y, 0);
                 foreach (var sr in flyingBuildingSprite.GetComponentsInChildren<SpriteRenderer>())
@@ -86,7 +97,7 @@ public class BuildingGrid : MonoBehaviour
 
                 if (available && Mouse.current.leftButton.IsPressed())
                 {
-                    PlaceBuilding(x, y);
+                    PlaceBuilding(x, y, status);
                 }
             }
         }
@@ -101,17 +112,24 @@ public class BuildingGrid : MonoBehaviour
         return Color.red;
     }
 
-    private bool IsPlaceTaken(int placeX, int placeY)
+    private PlaceTaken IsPlaceTaken(int placeX, int placeY)
     {
+        int n = 0;
         for (int x = 0; x < building.Size.x; x++)
         {
             for (int y = 0; y < building.Size.y; y++)
             {
-                if (grid[placeX + x, placeY + y] != null) return true;
+                if (grid[placeX + x, placeY + y] != null) n++;
             }
         }
-
-        return false;
+        if (n < building.Size.x * building.Size.y)
+        {
+            return n == 0 ? PlaceTaken.NotTaken : PlaceTaken.PartiallyTaken;
+        }
+        else
+        {
+            return PlaceTaken.FullyTaken;
+        }
     }
 
     // private bool IsPlaceTaken(int placeX, int placeY)
@@ -151,7 +169,7 @@ public class BuildingGrid : MonoBehaviour
     //     return false;
     // }
 
-    private void PlaceBuilding(int placeX, int placeY)
+    private void PlaceBuilding(int placeX, int placeY, PlaceTaken status)
     {
         if (ResourcesManager.Instance != null)
         {
@@ -160,18 +178,29 @@ public class BuildingGrid : MonoBehaviour
                 return;
             }
         }
-        building.transform.position = new Vector3(placeX, placeY, 0);
-        Instantiate(building);
-        for (int x = 0; x < building.Size.x; x++)
+        if (status == PlaceTaken.NotTaken)
         {
-            for (int y = 0; y < building.Size.y; y++)
+            building.transform.position = new Vector3(placeX, placeY, 0);
+            Instantiate(building);
+            for (int x = 0; x < building.Size.x; x++)
             {
-                grid[placeX + x, placeY + y] = building;
+                for (int y = 0; y < building.Size.y; y++)
+                {
+                    grid[placeX + x, placeY + y] = building;
+                }
             }
         }
-
+        if (status == PlaceTaken.FullyTaken)
+        {
+            MergeBuildings(building, grid[placeX, placeY]);
+        }
         Destroy(flyingBuilding);
         building = null;
+    }
+
+    public void MergeBuildings(BaseBuilding newBuilding, BaseBuilding oldBuilding)
+    {
+
     }
 
     // private void PlaceBuilding(int placeX, int placeY)
