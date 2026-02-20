@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-class Timer: MonoBehaviour
+class Timer : MonoBehaviour
 {
     public float _update_time = 1f;
     public bool isRunning = false;
@@ -18,7 +18,7 @@ class Timer: MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -37,7 +37,7 @@ class Timer: MonoBehaviour
 
     private void Start()
     {
-        _timerCoroutine =  StartCoroutine(TimeUpdate(_update_time));
+        _timerCoroutine = StartCoroutine(TimeUpdate(_update_time));
     }
 
 

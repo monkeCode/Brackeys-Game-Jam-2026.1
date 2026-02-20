@@ -43,6 +43,10 @@ public class BuildingGrid : MonoBehaviour
         //     flyingBuildingSpriteRenderer.sortingOrder = 100;
         flyingBuilding.transform.localScale = buildingPrefab.transform.localScale;
         flyingBuildingSprite.transform.localScale = gb.localScale;
+        foreach (var sr in flyingBuildingSprite.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.sortingOrder = 100;
+        }
         //     // flyingBuilding.transform.localScale = new Vector3(gb.localScale.x * buildingPrefab.transform.localScale.x, gb.localScale.y * buildingPrefab.transform.localScale.y, gb.localScale.z * buildingPrefab.transform.localScale.z);
         // }
         building = buildingPrefab;
