@@ -26,6 +26,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         moveInput.x = moveAction.ReadValue<Vector2>().x;
-        transform.position += (Vector3)(moveSpeed * Time.deltaTime * moveInput);
+        if (moveInput.x == -1f && Mouse.current.position.ReadValue().x > (Screen.width - Screen.width / 10)) return;
+        if (moveInput.x == 1f && Mouse.current.position.ReadValue().x < Screen.width / 10) return;
+        if (moveInput.x == 1f || Mouse.current.position.ReadValue().x > (Screen.width - Screen.width / 10))
+        {
+            transform.position += (moveSpeed * Time.deltaTime * new Vector3(1, 0, 0));
+        }
+        else if (moveInput.x == -1f || Mouse.current.position.ReadValue().x < Screen.width / 10)
+        {
+            transform.position += (moveSpeed * Time.deltaTime * new Vector3(-1, 0, 0));
+        }
     }
 }
