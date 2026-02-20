@@ -20,8 +20,19 @@ namespace Units
 
         [field: SerializeField]  public virtual int MaxHealth {get; protected set;}
 
+        [SerializeField] protected LayerMask enemyLayer;
 
         protected Rigidbody2D rb;
+        protected Vector2 MoveDirection;
+        protected IDamageable CurrentTarget;
+        private float _cooldownTimer;
+
+        protected virtual void Awake()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            _cooldownTimer = 0f;
+            MoveDirection = Command == Command.Player ? Vector2.right : Vector2.left;
+        }
 
         public virtual void TakeDamage(int damage)
         {
@@ -34,17 +45,64 @@ namespace Units
 
         public virtual void Die()
         {
-            // Handle death logic here (e.g., play animation, remove from game, etc.)
+            Destroy(gameObject);
         }
 
         public void AttackTarget(IDamageable target)
         {
-            throw new System.NotImplementedException();
+            target.TakeDamage(Attack);
+            _cooldownTimer = AttackCooldown;
         }
 
         public void MoveTo(float x, float y)
         {
+            // не надо 
             throw new System.NotImplementedException();
+        }
+
+        protected virtual bool IsTargetInRange(IDamageable target)
+        {
+            if (target == null) return false;
+
+            var mb = target as MonoBehaviour;
+            if (mb == null) return false;
+
+            float dist = Vector2.Distance(transform.position, mb.transform.position);
+            return dist <= AttackRange;
+        }
+
+        protected virtual IDamageable FindClosestTargetInRange()
+        {
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, AttackRange, enemyLayer);
+
+            float best = float.MaxValue;
+            IDamageable bestTarget = null;
+            for (int i = 0; i < hits.Length; i++)
+            {
+                var hit = hits[i];
+                if (hit == null) continue;
+
+                if (!hit.TryGetComponent<IDamageable>(out var dmg)) continue;
+
+                float dist = Vector2.Distance(transform.position, hit.transform.position);
+                if (dist < best)
+                {
+                    best = dist;
+                    bestTarget = dmg;
+                }
+            }
+
+            return bestTarget;
+        }
+
+        protected virtual void MoveForward()
+        {
+            rb.linearVelocity = MoveDirection * Speed;
+        }
+
+        protected virtual void StopMoving()
+        {
+            rb.linearVelocity = Vector2.zero;
         }
 
         private void Start()
@@ -55,7 +113,26 @@ namespace Units
 
         private void Update()
         {
-            rb.linearVelocity = Vector2.right * Speed;
+            _cooldownTimer -= Time.deltaTime;
+
+            if (CurrentTarget != null && !IsTargetInRange(CurrentTarget))
+                CurrentTarget = null;
+
+            CurrentTarget ??= FindClosestTargetInRange();
+
+            if (CurrentTarget == null)
+            {
+                MoveForward();
+            }
+            else
+            {
+                StopMoving();
+                Debug.Log(_cooldownTimer);
+                if (_cooldownTimer < 0f)
+                {
+                    AttackTarget(CurrentTarget);
+                }
+            }
         }
     }
 }
