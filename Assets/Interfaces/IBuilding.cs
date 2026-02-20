@@ -28,6 +28,10 @@ namespace Buildings
 
         public void UpdateTimeTick();
 
+        public void SetActions(ICollection<IBuildingAction> actions);
+
+        public void AddAction(IBuildingAction action);
+
         public void Destroy();
 
     }
