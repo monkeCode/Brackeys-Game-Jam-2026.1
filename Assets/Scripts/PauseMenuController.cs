@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenuController : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class PauseMenuController : MonoBehaviour
     public GameObject pauseMenuPanel;
     public bool Paused => pauseMenuPanel.activeSelf;
     public string MainMenuScene = "MainMenu";
+    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private AudioMixer _mixer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -20,6 +25,14 @@ public class PauseMenuController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        sfxSlider.maxValue = 0f;
+        musicSlider.maxValue = 0f;
+        sfxSlider.minValue = -80f;
+        musicSlider.minValue = -80f;
+        _mixer.GetFloat("Music", out float volume);
+        musicSlider.value = volume;
+        _mixer.GetFloat("SFX", out volume);
+        sfxSlider.value = volume;
     }
 
     // Update is called once per frame
@@ -43,6 +56,18 @@ public class PauseMenuController : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+    }
+
+    public void MusicChanged()
+    {
+        float volume = musicSlider.value;
+        _mixer.SetFloat("Music", volume);
+    }
+
+    public void SfxChanged()
+    {
+        float volume = sfxSlider.value;
+        _mixer.SetFloat("SFX", volume);
     }
 
     public void ToMainMenu()
