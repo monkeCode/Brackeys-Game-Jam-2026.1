@@ -110,16 +110,21 @@ namespace Buildings
             actions.Add(Instantiate(action as BuildingAction));
         }
 
+        public void Merge(BaseBuilding first)
+        {
+            Merge(first, this);
+        }
         public void Merge(BaseBuilding first, BaseBuilding second)
         {
             MaxHealth = UnityEngine.Random.Range(math.min(first.MaxHealth, second.MaxHealth), math.max(first.MaxHealth, second.MaxHealth)+1);
             Command = first.Command;
 
-            float mean = (first.Actions.Count + first.Actions.Count)/2;
-            int actionsCount = (int)UnityEngine.Random.Range(math.min(math.floor(mean)-1,1), math.ceil(mean)+1);
-            var totalActions =  first.Actions.ToList();
-            totalActions.AddRange(second.Actions);
-            List<IBuildingAction> newActions = new();
+            float mean = (first.Actions.Count + first.Actions.Count) / 2.0f;
+            int actionsCount = (int)UnityEngine.Random.Range(math.min(math.floor(mean)-1,1), math.ceil(mean)*2);
+            Debug.Log(actionsCount);
+            var totalActions =  first.actions.ToList();
+            totalActions.AddRange(second.actions);
+            List<BuildingAction> newActions = new();
 
             for(int i = 0; i < actionsCount;i++)
             {
@@ -127,6 +132,8 @@ namespace Buildings
                 newActions.Add(totalActions[index]);
                 totalActions.RemoveAt(index);
             }
+            actions.Clear();
+            actions.AddRange(newActions);
 
             static T ChooseOneOf<T>(T one, T two)
             {
@@ -139,7 +146,7 @@ namespace Buildings
             Rb.sprite = ChooseOneOf(first.Rb.sprite, second.Rb.sprite);
             Rt.sprite = ChooseOneOf(first.Rt.sprite, second.Rt.sprite);
             Lt.sprite = ChooseOneOf(first.Lt.sprite, second.Lt.sprite);
-
+            
         }
     }
 }

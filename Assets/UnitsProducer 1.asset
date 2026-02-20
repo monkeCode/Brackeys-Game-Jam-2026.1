@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f98a1bca04ff0639a466c1a03abe7a, type: 3}
   m_Name: UnitsProducer 1
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.ProduceUnitAction
-  <ActionCooldownTime>k__BackingField: 0
-  <Unit>k__BackingField: {fileID: 0}
+  <ActionCooldownTime>k__BackingField: 30
+  <Unit>k__BackingField: {fileID: 4649541242082568172, guid: 32812680494b9843fa7067b87b0f2835, type: 3}

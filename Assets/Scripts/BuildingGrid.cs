@@ -180,13 +180,12 @@ public class BuildingGrid : MonoBehaviour
         }
         if (status == PlaceTaken.NotTaken)
         {
-            building.transform.position = new Vector3(placeX, placeY, 0);
-            Instantiate(building);
+            var b = Instantiate(building,  new Vector3(placeX, placeY, 0), Quaternion.identity);
             for (int x = 0; x < building.Size.x; x++)
             {
                 for (int y = 0; y < building.Size.y; y++)
                 {
-                    grid[placeX + x, placeY + y] = building;
+                    grid[placeX + x, placeY + y] = b ;
                 }
             }
         }
@@ -200,7 +199,7 @@ public class BuildingGrid : MonoBehaviour
 
     public void MergeBuildings(BaseBuilding newBuilding, BaseBuilding oldBuilding)
     {
-        Instantiate(newBuilding).Merge(newBuilding, oldBuilding);
+        oldBuilding.Merge(newBuilding);
     }
 
     // private void PlaceBuilding(int placeX, int placeY)
