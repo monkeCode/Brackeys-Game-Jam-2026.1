@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3891956936969971838}
   - component: {fileID: 4649541242082568172}
   - component: {fileID: 1593846029616329223}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: circle unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,11 +106,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Units.BaseUnit
   <Health>k__BackingField: 0
-  <Attack>k__BackingField: 0
+  <Attack>k__BackingField: 68
   <Speed>k__BackingField: 10
   <AttackRange>k__BackingField: 0
   <Armor>k__BackingField: 0
-  <AttackCooldown>k__BackingField: 0
+  <AttackCooldown>k__BackingField: 1.13
   <Type>k__BackingField: 0
   <Command>k__BackingField: 0
   <MaxHealth>k__BackingField: 0

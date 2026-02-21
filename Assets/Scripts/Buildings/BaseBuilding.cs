@@ -29,9 +29,18 @@ namespace Buildings
         [field: SerializeField] public SpriteRenderer Rt {get; private set;}
         [field: SerializeField] public SpriteRenderer Lt {get; private set;}
 
+
+        [ContextMenu("Destroy")]
         public void Destroy()
         {
-            throw new System.NotImplementedException();
+            if(Command == Command.Player)
+            {
+                ResourcesManager.Instance.DeletePlayerBuilding(this);
+            }
+            else if(Command == Command.Enemy)
+            {
+                ResourcesManager.Instance.DeleteEnemyBuilding(this);
+            }
         }
 
         public void TakeDamage(int damage)
@@ -70,6 +79,15 @@ namespace Buildings
         protected void Start()
         {
             InitActions();
+
+            if(Command == Command.Player)
+            {
+                ResourcesManager.Instance.AddPlayerBuilding(this);
+            }
+            else if (Command == Command.Enemy)
+            {
+                ResourcesManager.Instance.AddPlayerBuilding(this);
+            }
         }
 
         void OnEnable()
