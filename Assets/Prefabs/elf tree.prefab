@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 594664051005243771}
   - component: {fileID: 4099459171565701675}
-  m_Layer: 0
+  - component: {fileID: 6609847889297537097}
+  m_Layer: 9
   m_Name: elf tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,6 +57,52 @@ MonoBehaviour:
   <Rb>k__BackingField: {fileID: 2352331253975630233}
   <Rt>k__BackingField: {fileID: 1434953048897210885}
   <Lt>k__BackingField: {fileID: 8952220660352182692}
+--- !u!61 &6609847889297537097
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412402381852613047}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.2062695, y: 0.018923998}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.67072535, y: 1.3330588}
+  m_EdgeRadius: 0
 --- !u!1 &769909618107153461
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2686255145519860369}
   - component: {fileID: 8952220660352182692}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +181,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 787255927
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 8aae504912ac5f1ce82680c361c1f4bf, type: 3}
@@ -157,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 804031964617303934}
   - component: {fileID: 2352331253975630233}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +272,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 787255927
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 132cbab4fe4ab30e9b966d8f371c9332, type: 3}
@@ -248,7 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8730697400645943031}
   - component: {fileID: 1434953048897210885}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +363,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 787255927
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: f6536963e83f7bb00acc360464facbda, type: 3}
@@ -339,7 +386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5638756381845171271}
   - component: {fileID: 8123075857071983317}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +454,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 787255927
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 3dac60a2e97699e91a8b7c0c029f9488, type: 3}
@@ -429,7 +476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2155549355648446124}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

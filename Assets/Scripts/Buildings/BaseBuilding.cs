@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DG.Tweening;
 using Merger;
 using Unity.Collections;
 using Unity.Mathematics;
@@ -201,6 +202,7 @@ namespace Buildings
         public void OnPointerClick(PointerEventData eventData)
         {
             Debug.Log("click");
+            transform.DOScale(new Vector2(1.1f,1.1f), 0.5f).SetLoops(2, LoopType.Yoyo).OnComplete(() => transform.localScale = Vector3.one);
             UiManager.Instance.ShowBuildingUi(this);
         }
 
