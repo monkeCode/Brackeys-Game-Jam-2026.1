@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Merger;
 using UnityEngine;
 
@@ -33,6 +34,7 @@ namespace Units
         private float _knockbackTimer;
 
         protected Rigidbody2D rb;
+        protected SpriteRenderer sp;
         protected Vector2 MoveDirection;
         protected IDamageable CurrentTarget;
         private float _cooldownTimer;
@@ -106,22 +108,33 @@ namespace Units
         protected virtual IDamageable FindClosestTarget(float range)
         {
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, range, enemyLayer);
-
-            float best = float.MaxValue;
             IDamageable bestTarget = null;
+            List<(IDamageable target, float weight)> weightedTargets = new List<(IDamageable, float)>();
+            float totalWeight = 0f;
+
             for (int i = 0; i < hits.Length; i++)
             {
                 var hit = hits[i];
-                if (hit == null) continue;
-
-                if (!hit.TryGetComponent<IDamageable>(out var dmg)) continue;
+                if (hit == null || !hit.TryGetComponent<IDamageable>(out var dmg)) continue;
 
                 float dist = Vector2.Distance(transform.position, hit.transform.position);
-                if (dist < best)
+                float weight = 1f / (dist + 0.01f); // Инверсия расстояния
+                
+                weightedTargets.Add((dmg, weight));
+                totalWeight += weight;
+            }
+
+            // Выбираем случайную цель
+            float randomPoint = Random.value * totalWeight;
+
+            foreach (var (target, weight) in weightedTargets)
+            {
+                if (randomPoint < weight)
                 {
-                    best = dist;
-                    bestTarget = dmg;
+                    bestTarget = target;
+                    break;
                 }
+                randomPoint -= weight;
             }
 
             return bestTarget;
@@ -141,10 +154,12 @@ namespace Units
         {
             // Initialize unit properties here
             rb = GetComponent<Rigidbody2D>();
+            sp = GetComponent<SpriteRenderer>();
         }
 
         private void Update()
         {
+            sp.flipX = rb.linearVelocityX < 0;
             _cooldownTimer -= Time.deltaTime;
             if (_knockbackTimer > 0f)
             {

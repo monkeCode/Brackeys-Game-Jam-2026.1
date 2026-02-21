@@ -64,6 +64,7 @@ public class ResourcesManager : MonoBehaviour
     public void DeletePlayerBuilding(IBuilding building)
     {
         _playerBuildings.Remove(building);
+        Debug.Log(_playerBuildings.Count);
         if (_playerBuildings.Count == 0)
         {
             EnemyWin?.Invoke();

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Buildings;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,11 +10,13 @@ using UnityEngine.InputSystem.Controls;
 [RequireComponent(typeof(AudioSource))]
 public class BuildingGrid : MonoBehaviour
 {
+    [SerializeField] public GameObject CeilFiller;
     [SerializeField] public Vector2Int GridSize = new(20, 10);
     [SerializeField] private Camera mainCamera;
     private GameObject flyingBuilding;
     // private SpriteRenderer flyingBuildingSpriteRenderer;
     private BaseBuilding[,] grid;
+    private List<GameObject> places = new();
     private BaseBuilding building;
     private GameObject flyingBuildingSprite;
     private AudioSource audioSource;
@@ -29,11 +32,22 @@ public class BuildingGrid : MonoBehaviour
     {
         grid = new BaseBuilding[GridSize.x, GridSize.y];
         audioSource = GetComponent<AudioSource>();
+        for(int x = 0; x < GridSize.x; x++)
+        {
+            for(int y = 0; y < GridSize.y; y++)
+            {
+                places.Add(Instantiate(CeilFiller, new Vector3(x,y,0), Quaternion.identity));
+            }
+        }
     }
 
 
     public void StartPlacingBuilding(BaseBuilding buildingPrefab)
     {
+        foreach(var p in places)
+        {
+            p.SetActive(true);
+        }
         if (flyingBuilding != null)
         {
             Destroy(flyingBuilding);
@@ -64,12 +78,19 @@ public class BuildingGrid : MonoBehaviour
 
     private void Update()
     {
+        if(flyingBuilding == null)
+        {
+            foreach(var p in places)
+            {
+                p.SetActive(false);
+            }
+        }
         if (Mouse.current.rightButton.IsPressed())
         {
             Destroy(flyingBuilding);
             building = null;
         }
-        else if (flyingBuilding != null && !EventSystem.current.IsPointerOverGameObject())
+        else if (flyingBuilding != null)
         {
             var groundPlane = new Plane(Vector3.forward, Vector3.zero);
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
