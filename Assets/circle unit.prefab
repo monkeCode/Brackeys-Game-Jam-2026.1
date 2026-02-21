@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3891956936969971838}
   - component: {fileID: 4649541242082568172}
   - component: {fileID: 1593846029616329223}
+  - component: {fileID: -6441998522710496433}
   m_Layer: 6
   m_Name: circle unit
   m_TagString: Untagged
@@ -79,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1566376441
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 2b38dc05b1b5ea762916caec3a988d8d, type: 3}
@@ -116,7 +117,7 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
 --- !u!50 &1593846029616329223
 Rigidbody2D:
   serializedVersion: 5
