@@ -117,7 +117,7 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
 --- !u!50 &1896269168338963192
 Rigidbody2D:
   serializedVersion: 5

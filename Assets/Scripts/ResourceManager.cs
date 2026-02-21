@@ -67,7 +67,7 @@ public class ResourcesManager : MonoBehaviour
         if (_playerBuildings.Count == 0)
         {
             EnemyWin?.Invoke();
-            SceneManager.LoadScene("");
+            SceneManager.LoadScene("Scenes/GameOverMenu");
         }
     }
 
@@ -77,6 +77,7 @@ public class ResourcesManager : MonoBehaviour
         if (_enemyBuildings.Count == 0)
         {
             PlayerWin?.Invoke();
+            SceneManager.LoadScene("Scenes/VictoryMenu");
         }
     }
 }

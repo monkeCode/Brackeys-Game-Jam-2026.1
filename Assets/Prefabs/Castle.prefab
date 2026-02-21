@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 594664051005243771}
   - component: {fileID: 4099459171565701675}
   m_Layer: 0
-  m_Name: testBuildingAlex
+  m_Name: Castle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 641c7aaf0d8e87b77a7fd9d0ec807c25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8aae504912ac5f1ce82680c361c1f4bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -228,7 +228,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 32ca1df70b832e1c5b4b464324de02a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 132cbab4fe4ab30e9b966d8f371c9332, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -319,7 +319,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 196e268859865985eacb74949f200743, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6536963e83f7bb00acc360464facbda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -410,7 +410,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 88c39bbaaa83b985b9b5b4c21a3f8989, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3dac60a2e97699e91a8b7c0c029f9488, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
