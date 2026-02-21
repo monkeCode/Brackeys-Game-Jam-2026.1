@@ -21,5 +21,6 @@ namespace Buildings
             }
         }
 
+        public abstract void Up();
     }
 }

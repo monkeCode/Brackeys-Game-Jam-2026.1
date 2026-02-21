@@ -12,6 +12,7 @@ namespace Buildings
         public void DoAction(GameObject building);
 
         public void UpdateTimeTick(GameObject building);
+        public void Up();
     }    
 
     public interface IBuilding
@@ -33,6 +34,8 @@ namespace Buildings
         public void AddAction(IBuildingAction action);
 
         public void Destroy();
+
+        public void Up();
 
     }
 }
