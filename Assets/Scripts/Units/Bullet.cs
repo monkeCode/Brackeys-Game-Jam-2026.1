@@ -6,18 +6,17 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] protected float speed;
 
-    protected BaseUnit target;
+    protected MonoBehaviour target;
     protected int damage;
 
     private Vector3 dir;
 
-    public virtual void FindAndDestroy(BaseUnit target, int damage)
+    public virtual void FindAndDestroy(IDamageable target, int damage)
     {
-        this.target = target;
-        this.damage = damage;
+        if (target is not MonoBehaviour mb) return;
 
-        dir = (target.transform.position - transform.position).normalized;
-        transform.Rotate(new Vector3(0,0, Vector2.Angle(Vector2.right, dir)));
+        this.target = mb;
+        this.damage = damage;
     }
     private void Start()
     {
@@ -25,11 +24,23 @@ public class Bullet : MonoBehaviour
     }
     protected virtual void Update()
     {
+        if (target == null)
+        {
+            Destroy(gameObject);
+        }
+
+        dir = (target.transform.position - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
         transform.position += speed * Time.deltaTime * dir;
         if(Vector2.Distance(transform.position, target.transform.position) < 0.1)
         {
-            target.TakeDamage(damage);
-            Destroy(gameObject);
+            if (target is IDamageable damageableTarget)
+            {
+                damageableTarget.TakeDamage(damage);
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Buildings
         [SerializeField] protected int UpPercent;
         public override void DoAction(GameObject building)
         {
-            //Instantiate(Unit, building.transform.position, Quaternion.identity).ScaleStats(building.GetComponent<BaseBuilding>().Lvl);
+            Instantiate(Unit, building.transform.position, Quaternion.identity).ScaleStats(building.GetComponent<BaseBuilding>().Lvl);
         }
 
         public override void Up()
