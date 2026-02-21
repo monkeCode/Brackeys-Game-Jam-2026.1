@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
+[RequireComponent(typeof(AudioSource))]
 public class BuildingGrid : MonoBehaviour
 {
     [SerializeField] public Vector2Int GridSize = new(20, 10);
@@ -15,6 +16,7 @@ public class BuildingGrid : MonoBehaviour
     private BaseBuilding[,] grid;
     private BaseBuilding building;
     private GameObject flyingBuildingSprite;
+    private AudioSource audioSource;
     enum PlaceTaken
     {
         NotTaken,
@@ -26,6 +28,7 @@ public class BuildingGrid : MonoBehaviour
     void Awake()
     {
         grid = new BaseBuilding[GridSize.x, GridSize.y];
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -188,10 +191,18 @@ public class BuildingGrid : MonoBehaviour
                     grid[placeX + x, placeY + y] = b;
                 }
             }
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
         if (status == PlaceTaken.FullyTaken)
         {
             MergeBuildings(building, grid[placeX, placeY]);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
         Destroy(flyingBuilding);
         building = null;
