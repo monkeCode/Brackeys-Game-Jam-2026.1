@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DG.Tweening;
 using Merger;
 using Unity.Collections;
 using Unity.Mathematics;
@@ -148,6 +149,7 @@ namespace Buildings
         public void Merge(BaseBuilding first, BaseBuilding second)
         {
             MaxHealth = UnityEngine.Random.Range(math.min(first.MaxHealth, second.MaxHealth), math.max(first.MaxHealth, second.MaxHealth)+1);
+            Health = math.min((int)((first.Health + second.Health) / 2.0f), MaxHealth);
             Command = first.Command;
 
             float mean = (first.Actions.Count + first.Actions.Count) / 2.0f;
@@ -195,14 +197,19 @@ namespace Buildings
         public void Up()
         {
             Lvl++;
+            MaxHealth += (int)(MaxHealth * 1.05f);
+            Repair(MaxHealth);
             Debug.Log($"Up to {Lvl}");
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("click");
-            UiManager.Instance.ShowBuildingUi(this);
+            transform.DOScale(new Vector2(1.1f,1.1f), 0.5f).SetLoops(2, LoopType.Yoyo).OnComplete(() => transform.localScale = Vector3.one);
+            if(Command == Command.Player)
+            {
+                Debug.Log("click");
+                UiManager.Instance.ShowBuildingUi(this);
+            }
         }
-
     }
 }
