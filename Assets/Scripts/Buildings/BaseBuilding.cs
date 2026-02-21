@@ -33,7 +33,7 @@ namespace Buildings
 
         public int Lvl {get; protected set;}
 
-        public int UpPrice => (int)Math.Ceiling(Lvl*0.5 + Cost);
+        public int UpPrice => (int)Math.Ceiling(Math.Pow(1.10, Lvl) * Cost);
 
         [field: SerializeField] public SpriteRenderer Lb {get; private set;}
         [field: SerializeField] public SpriteRenderer Rb {get; private set;}
@@ -99,8 +99,9 @@ namespace Buildings
             }
             else if (Command == Command.Enemy)
             {
-                ResourcesManager.Instance.AddPlayerBuilding(this);
+                ResourcesManager.Instance.AddEnemyBuilding(this);
             }
+            Timer.Instance.onTimerUpdate += UpdateTimeTick;
         }
 
         protected void Update()
@@ -108,11 +109,7 @@ namespace Buildings
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
         }
 
-        void OnEnable()
-        {
-            Timer.Instance.onTimerUpdate += UpdateTimeTick;
-        }
-        void OnDisable()
+        void OnDestroy()
         {
             Timer.Instance.onTimerUpdate -= UpdateTimeTick;
         }
@@ -201,7 +198,7 @@ namespace Buildings
         public void Up()
         {
             Lvl++;
-            MaxHealth += (int)(MaxHealth * 1.05f);
+            MaxHealth += (int)(MaxHealth * 0.05f);
             Repair(MaxHealth);
             Debug.Log($"Up to {Lvl}");
             if(upgradeClip != null)

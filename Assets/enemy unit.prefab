@@ -118,7 +118,7 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   knockbackForce: 3
   knockbackDuration: 0.25
   projectilePrefab: {fileID: 7750574733402758417, guid: 9ef63e1918bbe2e23bfb952ae1f6e58e, type: 3}
