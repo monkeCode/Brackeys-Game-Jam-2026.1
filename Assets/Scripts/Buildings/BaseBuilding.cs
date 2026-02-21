@@ -12,6 +12,7 @@ using UnityEngine.EventSystems;
 
 namespace Buildings
 {
+    [RequireComponent(typeof(AudioSource))]
     public class BaseBuilding : MonoBehaviour, IBuilding, IDamageable, IMergable< BaseBuilding>, IPointerClickHandler
     {
         [field: SerializeField] public int Health { get; protected set; }
@@ -26,6 +27,8 @@ namespace Buildings
 
         [field: SerializeField] public int MaxHealth { get; protected set; }
 
+        [SerializeField] private AudioClip upgradeClip;
+
         [SerializeField] protected List<BuildingAction> actions;
 
         public int Lvl {get; protected set;}
@@ -37,6 +40,7 @@ namespace Buildings
         [field: SerializeField] public SpriteRenderer Rt {get; private set;}
         [field: SerializeField] public SpriteRenderer Lt {get; private set;}
 
+        private AudioSource audioSource;
 
         [ContextMenu("Destroy")]
         public void Destroy()
@@ -200,6 +204,8 @@ namespace Buildings
             MaxHealth += (int)(MaxHealth * 1.05f);
             Repair(MaxHealth);
             Debug.Log($"Up to {Lvl}");
+            if(upgradeClip != null)
+                audioSource.PlayOneShot(upgradeClip);
         }
 
         public void OnPointerClick(PointerEventData eventData)

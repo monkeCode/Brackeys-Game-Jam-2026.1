@@ -658,8 +658,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4099459171565701675, guid: a355299057cd290ef8ee8693079900c2, type: 3}
     - target: {fileID: 351879666717378383, guid: 8001a0805e1e9414686cbc9bfcfb0bf5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 351879666717378383, guid: 8001a0805e1e9414686cbc9bfcfb0bf5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartPlacingBuilding
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 351879666717378383, guid: 8001a0805e1e9414686cbc9bfcfb0bf5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument

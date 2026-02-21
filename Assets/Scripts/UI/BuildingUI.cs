@@ -26,8 +26,11 @@ public class BuildingUI : MonoBehaviour, IPointerExitHandler
 
     public void UpdateBuilding()
     {
-        //TODO: деньги чекнуть
-        activeBuilding.Up();
+        if(ResourcesManager.Instance.SpendMoney(activeBuilding.UpPrice))
+        {
+            activeBuilding.Up();
+            text.text = activeBuilding.ToString();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
