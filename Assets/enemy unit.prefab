@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2340198011282899278}
   - component: {fileID: 1896269168338963192}
   - component: {fileID: 7752553824219901143}
-  m_Layer: 11
+  m_Layer: 7
   m_Name: enemy unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,18 +106,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1684121f8fa3e2ae95d485a13118c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Units.BaseUnit
-  <Health>k__BackingField: 2
-  <Attack>k__BackingField: 1
-  <Speed>k__BackingField: 1
+  <Health>k__BackingField: 10
+  <Attack>k__BackingField: 10
+  <Speed>k__BackingField: 2
   <AttackRange>k__BackingField: 2
+  <ViewRange>k__BackingField: 4
   <Armor>k__BackingField: 0
   <AttackCooldown>k__BackingField: 3
-  <Type>k__BackingField: 0
+  <Type>k__BackingField: 1
   <Command>k__BackingField: 1
   <MaxHealth>k__BackingField: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  knockbackForce: 3
+  knockbackDuration: 0.25
+  projectilePrefab: {fileID: 7750574733402758417, guid: 9ef63e1918bbe2e23bfb952ae1f6e58e, type: 3}
 --- !u!50 &1896269168338963192
 Rigidbody2D:
   serializedVersion: 5

@@ -19,7 +19,7 @@ namespace Units
 
         public void AttackTarget(IDamageable target);
 
-        public void MoveTo(float x, float y);
+        public void MoveTo(IDamageable target);
 
         public void Die();
     }

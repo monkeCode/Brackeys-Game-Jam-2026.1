@@ -11,6 +11,7 @@ namespace Units
         [field: SerializeField]public virtual int Attack { get; protected set;}
         [field: SerializeField] public virtual float Speed { get; protected set;}
         [field: SerializeField] public virtual float AttackRange { get; protected set;}
+        [field: SerializeField] public virtual float ViewRange { get; protected set; }
 
         [field: SerializeField] public virtual int Armor { get; protected set;}
         [field: SerializeField] public virtual float AttackCooldown { get; protected set;}
@@ -21,6 +22,15 @@ namespace Units
         [field: SerializeField]  public virtual int MaxHealth {get; protected set;}
 
         [SerializeField] protected LayerMask enemyLayer;
+
+        [Header("Knockback")]
+        [SerializeField] private float knockbackForce = 3f;
+        [SerializeField] private float knockbackDuration = 0.25f;
+
+        [Header("Ranged Settings")]
+        [SerializeField] private Bullet projectilePrefab;
+
+        private float _knockbackTimer;
 
         protected Rigidbody2D rb;
         protected Vector2 MoveDirection;
@@ -37,10 +47,20 @@ namespace Units
         public virtual void TakeDamage(int damage)
         {
             Health -= damage;
+
+            ApplyKnockback();
+
             if (Health <= 0)
             {
                 Die();
             }
+        }
+
+        protected virtual void ApplyKnockback()
+        {
+            _knockbackTimer = knockbackDuration;
+            Vector2 knockDir = -MoveDirection;
+            rb.linearVelocity = knockDir * knockbackForce;
         }
 
         public virtual void Die()
@@ -50,30 +70,42 @@ namespace Units
 
         public void AttackTarget(IDamageable target)
         {
-            target.TakeDamage(Attack);
+            if (Type == UnitType.Ranged)
+            {
+                Bullet projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+                projectile.FindAndDestroy(target, Attack);
+            }
+            else
+            {
+                target.TakeDamage(Attack);
+            }
+
             _cooldownTimer = AttackCooldown;
         }
 
-        public void MoveTo(float x, float y)
+        public void MoveTo(IDamageable target)
         {
-            // не надо 
-            throw new System.NotImplementedException();
+            if (target is not MonoBehaviour mb)
+            {
+                MoveForward();
+                return;
+            }
+
+            rb.linearVelocity = ((mb.transform.position - transform.position) * Speed).normalized;
         }
 
-        protected virtual bool IsTargetInRange(IDamageable target)
+        protected virtual bool IsTargetInRange(IDamageable target, float range)
         {
             if (target == null) return false;
-
-            var mb = target as MonoBehaviour;
-            if (mb == null) return false;
+            if (target is not MonoBehaviour mb) return false;
 
             float dist = Vector2.Distance(transform.position, mb.transform.position);
-            return dist <= AttackRange;
+            return dist <= range;
         }
 
-        protected virtual IDamageable FindClosestTargetInRange()
+        protected virtual IDamageable FindClosestTarget(float range)
         {
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, AttackRange, enemyLayer);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, range, enemyLayer);
 
             float best = float.MaxValue;
             IDamageable bestTarget = null;
@@ -114,25 +146,54 @@ namespace Units
         private void Update()
         {
             _cooldownTimer -= Time.deltaTime;
+            if (_knockbackTimer > 0f)
+            {
+                _knockbackTimer -= Time.deltaTime;
+                rb.linearVelocity = (-MoveDirection) * knockbackForce;
+                return;
+            }
 
-            if (CurrentTarget != null && !IsTargetInRange(CurrentTarget))
+            if (CurrentTarget is MonoBehaviour targetMb)
+            {
+                if (targetMb == null || !IsTargetInRange(CurrentTarget, ViewRange))
+                    CurrentTarget = null;
+            }
+            else if (CurrentTarget != null)
+            {
                 CurrentTarget = null;
+            }
 
-            CurrentTarget ??= FindClosestTargetInRange();
+            CurrentTarget ??= FindClosestTarget(ViewRange);
 
             if (CurrentTarget == null)
             {
                 MoveForward();
+                return;
+            }
+            
+            if (IsTargetInRange(CurrentTarget, AttackRange))
+            {
+                StopMoving();
+                if (_cooldownTimer <= 0f)
+                    AttackTarget(CurrentTarget);
             }
             else
             {
-                StopMoving();
-                Debug.Log(_cooldownTimer);
-                if (_cooldownTimer < 0f)
-                {
-                    AttackTarget(CurrentTarget);
-                }
+                MoveTo(CurrentTarget);
             }
+        }
+
+        public virtual void ScaleStats(int level)
+        {
+            if (level <= 1)
+                return;
+
+            float multiplier = 1f + (level - 1) * 0.1f; 
+
+            Health = Mathf.RoundToInt(Health * multiplier);
+            Attack = Mathf.RoundToInt(Attack * multiplier);
+            Speed *= multiplier;
+            AttackCooldown /= multiplier;
         }
     }
 }
