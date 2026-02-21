@@ -36,7 +36,7 @@ public class BuildingGrid : MonoBehaviour
             Destroy(flyingBuilding);
         }
         Transform gb = buildingPrefab.transform.GetChild(0);
-        SpriteRenderer sp = gb.GetComponent<SpriteRenderer>();
+        // SpriteRenderer sp = gb.GetComponent<SpriteRenderer>();
         GameObject copy = Instantiate(gb.gameObject);
         flyingBuilding = new GameObject("CursorObject");
         flyingBuildingSprite = copy;
@@ -180,12 +180,12 @@ public class BuildingGrid : MonoBehaviour
         }
         if (status == PlaceTaken.NotTaken)
         {
-            var b = Instantiate(building,  new Vector3(placeX, placeY, 0), Quaternion.identity);
+            var b = Instantiate(building, new Vector3(placeX, placeY, 0), Quaternion.identity);
             for (int x = 0; x < building.Size.x; x++)
             {
                 for (int y = 0; y < building.Size.y; y++)
                 {
-                    grid[placeX + x, placeY + y] = b ;
+                    grid[placeX + x, placeY + y] = b;
                 }
             }
         }
