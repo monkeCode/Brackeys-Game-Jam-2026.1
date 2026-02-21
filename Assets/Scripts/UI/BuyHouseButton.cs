@@ -13,6 +13,7 @@ public class BuyHouseButton : MonoBehaviour
     private Button buttonComponent;
     private Color buttonColor;
     private Color textColor;
+    Image image;
     [SerializeField] public Color unavailableButtonColor = new(1, 0, 0, 0.3f);
     [SerializeField] public Color unavailableTextColor = new(0.6f, 0.2f, 0.2f, 0.7f);
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,13 +25,18 @@ public class BuyHouseButton : MonoBehaviour
         text = GetComponentInChildren<TMP_Text>();
         textColor = text.color;
         text.text = buildingPrefab.Cost.ToString();
-
+        Transform gb = buildingPrefab.transform.GetChild(0);
+        Transform child = gb.Find("rt");
+        image = transform.GetChild(1).GetComponent<Image>();
+        image.sprite = child.GetComponent<SpriteRenderer>().sprite;
+        image.color = new Color(255, 255, 255, 255);
         if (ResourcesManager.Instance != null)
         {
             ResourcesManager.Instance.OnGoldChanged += UpdateButton;
             if (ResourcesManager.Instance.money < buildingPrefab.Cost)
             {
                 buttonImage.color = unavailableButtonColor;
+                image.color = unavailableButtonColor;
                 buttonComponent.interactable = false;
                 text.color = unavailableTextColor;
             }
@@ -42,12 +48,14 @@ public class BuyHouseButton : MonoBehaviour
         if (money < buildingPrefab.Cost)
         {
             buttonImage.color = unavailableButtonColor;
+            image.color = unavailableButtonColor;
             buttonComponent.interactable = false;
             text.color = unavailableTextColor;
         }
         else
         {
             buttonImage.color = buttonColor;
+            image.color = new Color(255, 255, 255, 255);
             buttonComponent.interactable = true;
             text.color = textColor;
         }

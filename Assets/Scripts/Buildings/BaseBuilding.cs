@@ -1,14 +1,17 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Merger;
 using Unity.Collections;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Buildings
 {
-    public class BaseBuilding : MonoBehaviour, IBuilding, IDamageable, IMergable< BaseBuilding>
+    public class BaseBuilding : MonoBehaviour, IBuilding, IDamageable, IMergable< BaseBuilding>, IPointerClickHandler
     {
         [field: SerializeField] public int Health { get; protected set; }
 
@@ -24,14 +27,28 @@ namespace Buildings
 
         [SerializeField] protected List<BuildingAction> actions;
 
+        public int Lvl {get; protected set;}
+
+        public int UpPrice => (int)Math.Ceiling(Lvl*0.5 + Cost);
+
         [field: SerializeField] public SpriteRenderer Lb {get; private set;}
         [field: SerializeField] public SpriteRenderer Rb {get; private set;}
         [field: SerializeField] public SpriteRenderer Rt {get; private set;}
         [field: SerializeField] public SpriteRenderer Lt {get; private set;}
 
+
+        [ContextMenu("Destroy")]
         public void Destroy()
         {
-            throw new System.NotImplementedException();
+            if(Command == Command.Player)
+            {
+                ResourcesManager.Instance.DeletePlayerBuilding(this);
+            }
+            else if(Command == Command.Enemy)
+            {
+                ResourcesManager.Instance.DeleteEnemyBuilding(this);
+            }
+            Destroy(gameObject);
         }
 
         public void TakeDamage(int damage)
@@ -70,6 +87,20 @@ namespace Buildings
         protected void Start()
         {
             InitActions();
+
+            if(Command == Command.Player)
+            {
+                ResourcesManager.Instance.AddPlayerBuilding(this);
+            }
+            else if (Command == Command.Enemy)
+            {
+                ResourcesManager.Instance.AddPlayerBuilding(this);
+            }
+        }
+
+        protected void Update()
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
         }
 
         void OnEnable()
@@ -148,5 +179,30 @@ namespace Buildings
             Lt.sprite = ChooseOneOf(first.Lt.sprite, second.Lt.sprite);
             
         }
+
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"<b>Health</b>: {Health}/{MaxHealth}");
+            stringBuilder.AppendLine($"<b>Up price</b>: {UpPrice}");
+            foreach (var action in actions)
+            {
+                stringBuilder.AppendLine(action.ToString());
+            }
+            return stringBuilder.ToString();
+        }
+
+        public void Up()
+        {
+            Lvl++;
+            Debug.Log($"Up to {Lvl}");
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            Debug.Log("click");
+            UiManager.Instance.ShowBuildingUi(this);
+        }
+
     }
 }

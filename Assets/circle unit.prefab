@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4649541242082568172}
   - component: {fileID: 1593846029616329223}
   - component: {fileID: -6441998522710496433}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: circle unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1566376441
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 2b38dc05b1b5ea762916caec3a988d8d, type: 3}
@@ -106,18 +106,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1684121f8fa3e2ae95d485a13118c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Units.BaseUnit
-  <Health>k__BackingField: 2
-  <Attack>k__BackingField: 1
-  <Speed>k__BackingField: 5
-  <AttackRange>k__BackingField: 2
+  <Health>k__BackingField: 0
+  <Attack>k__BackingField: 68
+  <Speed>k__BackingField: 10
+  <AttackRange>k__BackingField: 0
   <Armor>k__BackingField: 0
-  <AttackCooldown>k__BackingField: 5
+  <AttackCooldown>k__BackingField: 1.13
   <Type>k__BackingField: 0
   <Command>k__BackingField: 0
   <MaxHealth>k__BackingField: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
 --- !u!50 &1593846029616329223
 Rigidbody2D:
   serializedVersion: 5
