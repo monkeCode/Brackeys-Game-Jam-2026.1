@@ -57,7 +57,8 @@ namespace Units
 
         public virtual void TakeDamage(int damage)
         {
-            Health -= damage;
+            int dmg = Math.Max(1, damage - Armor);
+            Health -= dmg;
 
             ApplyKnockback();
 

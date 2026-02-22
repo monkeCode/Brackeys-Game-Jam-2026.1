@@ -116,12 +116,16 @@ MonoBehaviour:
   <Type>k__BackingField: 0
   <Command>k__BackingField: 1
   <MaxHealth>k__BackingField: 5
+  <Name>k__BackingField: 
   enemyLayer:
     serializedVersion: 2
     m_Bits: 576
   knockbackForce: 3
   knockbackDuration: 0.25
   projectilePrefab: {fileID: 7750574733402758417, guid: 9ef63e1918bbe2e23bfb952ae1f6e58e, type: 3}
+  idleSprite: {fileID: -903892447127330024, guid: 9a59c3461af0f45e8bcb10d80ba97f86, type: 3}
+  attackSprite: {fileID: -8059355912385677183, guid: 9a59c3461af0f45e8bcb10d80ba97f86, type: 3}
+  attackAnimTime: 0.25
 --- !u!50 &1896269168338963192
 Rigidbody2D:
   serializedVersion: 5
