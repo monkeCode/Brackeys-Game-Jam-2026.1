@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 2b38dc05b1b5ea762916caec3a988d8d, type: 3}
+  m_Sprite: {fileID: -4393884601514288099, guid: adbd6e8e063f9457d836b25f2c54dd12, type: 3}
   m_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,6 +122,9 @@ MonoBehaviour:
   knockbackForce: 3
   knockbackDuration: 0.25
   projectilePrefab: {fileID: 6272953555761531290, guid: 80982c7b8c8e8bac597a3c6d0e2aee79, type: 3}
+  idleSprite: {fileID: -4393884601514288099, guid: adbd6e8e063f9457d836b25f2c54dd12, type: 3}
+  attackSprite: {fileID: -9176281469329294204, guid: adbd6e8e063f9457d836b25f2c54dd12, type: 3}
+  attackAnimTime: 0.12
 --- !u!50 &1593846029616329223
 Rigidbody2D:
   serializedVersion: 5
@@ -187,7 +190,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.9375, y: 1}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.9375, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

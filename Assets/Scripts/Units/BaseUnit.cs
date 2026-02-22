@@ -31,6 +31,11 @@ namespace Units
         [Header("Ranged Settings")]
         [SerializeField] private Bullet projectilePrefab;
 
+        [Header("Attack Animation (2 frames)")]
+        [SerializeField] private Sprite idleSprite;
+        [SerializeField] private Sprite attackSprite;
+        [SerializeField] private float attackAnimTime = 0.25f;
+
         private float _knockbackTimer;
 
         protected Rigidbody2D rb;
@@ -38,6 +43,7 @@ namespace Units
         protected Vector2 MoveDirection;
         protected IDamageable CurrentTarget;
         private float _cooldownTimer;
+        private float _attackAnimTimer;
 
         protected virtual void Awake()
         {
@@ -72,6 +78,7 @@ namespace Units
 
         public void AttackTarget(IDamageable target)
         {
+            PlayAttackAnim();
             if (Type == UnitType.Ranged)
             {
                 Bullet projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
@@ -150,22 +157,36 @@ namespace Units
             rb.linearVelocity = Vector2.zero;
         }
 
+        private void PlayAttackAnim()
+        {
+            sp.sprite = attackSprite;
+            _attackAnimTimer = attackAnimTime;
+        }
+
         private void Start()
         {
             // Initialize unit properties here
             rb = GetComponent<Rigidbody2D>();
             sp = GetComponent<SpriteRenderer>();
+            sp.sprite = idleSprite;
         }
 
         private void Update()
         {
-            sp.flipX = rb.linearVelocityX < 0;
+            sp.flipX = Command != Command.Player;
             _cooldownTimer -= Time.deltaTime;
             if (_knockbackTimer > 0f)
             {
                 _knockbackTimer -= Time.deltaTime;
                 rb.linearVelocity = (-MoveDirection) * knockbackForce;
                 return;
+            }
+
+            if (_attackAnimTimer > 0f)
+            {
+                _attackAnimTimer -= Time.deltaTime;
+                if (_attackAnimTimer <= 0f)
+                    sp.sprite = idleSprite;
             }
 
             if (CurrentTarget is MonoBehaviour targetMb)

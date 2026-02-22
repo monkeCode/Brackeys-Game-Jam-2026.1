@@ -122,6 +122,9 @@ MonoBehaviour:
   knockbackForce: 0.1
   knockbackDuration: 0.25
   projectilePrefab: {fileID: 6272953555761531290, guid: 80982c7b8c8e8bac597a3c6d0e2aee79, type: 3}
+  idleSprite: {fileID: -7293845677767149143, guid: 8227b3ffc5c43d5c0aa684b6ed1c070a, type: 3}
+  attackSprite: {fileID: -5766857864818055779, guid: 8227b3ffc5c43d5c0aa684b6ed1c070a, type: 3}
+  attackAnimTime: 0.12
 --- !u!50 &7932108466833565318
 Rigidbody2D:
   serializedVersion: 5
