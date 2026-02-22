@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &340885557877052261
+--- !u!1 &8690262960253974311
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6869138416938694498}
-  - component: {fileID: 3059448156030902387}
-  - component: {fileID: 1981086818541025885}
-  - component: {fileID: 1734515852760737331}
-  - component: {fileID: 530661580506562817}
-  m_Layer: 6
-  m_Name: mage unit
+  - component: {fileID: 6325504406757139403}
+  - component: {fileID: 6773171518349582859}
+  - component: {fileID: 2340198011282899278}
+  - component: {fileID: 1896269168338963192}
+  - component: {fileID: 7752553824219901143}
+  m_Layer: 7
+  m_Name: enemy unit 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6869138416938694498
+--- !u!4 &6325504406757139403
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340885557877052261}
+  m_GameObject: {fileID: 8690262960253974311}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 448.5935, y: 260.14432, z: 0}
+  m_LocalPosition: {x: 259.57065, y: 75.66959, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3059448156030902387
+--- !u!212 &6773171518349582859
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340885557877052261}
+  m_GameObject: {fileID: 8690262960253974311}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -84,8 +84,8 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 777539681757656896, guid: acd4ef485a0401bdd882123f6097975d, type: 3}
-  m_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
+  m_Sprite: {fileID: -3910206321738225328, guid: 9f03e2f65cb74d7b78dc8eca81ad50fc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -94,43 +94,43 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &1981086818541025885
+--- !u!114 &2340198011282899278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340885557877052261}
+  m_GameObject: {fileID: 8690262960253974311}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1684121f8fa3e2ae95d485a13118c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Units.BaseUnit
-  <Health>k__BackingField: 3
-  <Attack>k__BackingField: 2
-  <Speed>k__BackingField: 0.9
-  <AttackRange>k__BackingField: 3
-  <ViewRange>k__BackingField: 4
-  <Armor>k__BackingField: 1
+  <Health>k__BackingField: 5
+  <Attack>k__BackingField: 10
+  <Speed>k__BackingField: 0.5
+  <AttackRange>k__BackingField: 1
+  <ViewRange>k__BackingField: 3
+  <Armor>k__BackingField: 2
   <AttackCooldown>k__BackingField: 2
-  <Type>k__BackingField: 1
-  <Command>k__BackingField: 0
-  <MaxHealth>k__BackingField: 0
-  <Name>k__BackingField: Mage
+  <Type>k__BackingField: 0
+  <Command>k__BackingField: 1
+  <MaxHealth>k__BackingField: 5
+  <Name>k__BackingField: 
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 128
-  knockbackForce: 2
+    m_Bits: 576
+  knockbackForce: 3
   knockbackDuration: 0.25
   projectilePrefab: {fileID: 7750574733402758417, guid: 9ef63e1918bbe2e23bfb952ae1f6e58e, type: 3}
---- !u!50 &1734515852760737331
+--- !u!50 &1896269168338963192
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340885557877052261}
+  m_GameObject: {fileID: 8690262960253974311}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -150,13 +150,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &530661580506562817
+--- !u!61 &7752553824219901143
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340885557877052261}
+  m_GameObject: {fileID: 8690262960253974311}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f98a1bca04ff0639a466c1a03abe7a, type: 3}
   m_Name: KnightProducer
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.ProduceUnitAction
-  <ActionCooldownTime>k__BackingField: 30
+  <ActionCooldownTime>k__BackingField: 40
   <Unit>k__BackingField: {fileID: 6727532380747365479, guid: 908c1101ee1307143a5b6c35b2d82cb1, type: 3}
   UpPercent: 5

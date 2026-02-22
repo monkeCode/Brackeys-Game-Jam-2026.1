@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Units.BaseUnit
   <Health>k__BackingField: 5
-  <Attack>k__BackingField: 1
+  <Attack>k__BackingField: 2
   <Speed>k__BackingField: 1.5
   <AttackRange>k__BackingField: 1
   <ViewRange>k__BackingField: 2

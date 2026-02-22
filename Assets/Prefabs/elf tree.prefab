@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.BaseBuilding
   <Health>k__BackingField: 30
   <Cost>k__BackingField: 100
-  <Size>k__BackingField: {x: 1, y: 1}
+  <Size>k__BackingField: {x: 2, y: 1}
   <Command>k__BackingField: 0
   <MaxHealth>k__BackingField: 30
   upgradeClip: {fileID: 8300000, guid: a4878b007d9722cfd9fa7fac5bd3a435, type: 3}

@@ -20,7 +20,7 @@ namespace Buildings
 
         public override string ToString()
         {
-            return $"Spawns {Unit.Name}";
+            return $"Spawns {Unit.Name} each {ActionCooldownTime} ticks";
         }
     }
 

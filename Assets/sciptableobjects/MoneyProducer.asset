@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62968a52795e0b004b032db2292120dc, type: 3}
   m_Name: MoneyProducer
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.ProduceMoneyAction
-  <ActionCooldownTime>k__BackingField: 10
+  <ActionCooldownTime>k__BackingField: 15
   <Amount>k__BackingField: 6
   <UpPercent>k__BackingField: 5
   <MoneyPrefab>k__BackingField: {fileID: 7630867262518908032, guid: c9d3480d45a4ac06f93d564c937ab958, type: 3}

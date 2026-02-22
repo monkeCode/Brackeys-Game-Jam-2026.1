@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 733d44475cc8dd64d8689261f8a6cbfd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/testAlex.unity
     guid: 9904ba1033752cc4e8b64485705fb8c9
   - enabled: 1

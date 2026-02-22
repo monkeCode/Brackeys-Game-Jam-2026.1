@@ -24,7 +24,7 @@ namespace Buildings
 
         public override string ToString()
         {
-            return $"Makes money: {Amount}";
+            return $"Makes money: {Amount} each {ActionCooldownTime} ticks";
         }
     }
 }
