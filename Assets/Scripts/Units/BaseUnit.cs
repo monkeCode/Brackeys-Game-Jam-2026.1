@@ -60,19 +60,16 @@ namespace Units
             int dmg = Math.Max(1, damage - Armor);
             Health -= dmg;
 
-            ApplyKnockback();
-
             if (Health <= 0)
             {
                 Die();
             }
         }
 
-        protected virtual void ApplyKnockback()
+        protected virtual void ApplyKnockback(float force, Vector2 dir, float time)
         {
-            _knockbackTimer = knockbackDuration;
-            Vector2 knockDir = -MoveDirection;
-            rb.linearVelocity = knockDir * knockbackForce;
+            rb.linearVelocity = dir * force;
+            _knockbackTimer = time;
         }
 
         public virtual void Die()
@@ -91,6 +88,10 @@ namespace Units
             else
             {
                 target.TakeDamage(Attack);
+                if (target is BaseUnit unit)
+                {
+                    unit.ApplyKnockback(knockbackForce, (unit.transform.position - transform.position).normalized, knockbackDuration);
+                }
             }
 
             _cooldownTimer = AttackCooldown;
@@ -183,7 +184,6 @@ namespace Units
             if (_knockbackTimer > 0f)
             {
                 _knockbackTimer -= Time.deltaTime;
-                rb.linearVelocity = (-MoveDirection) * knockbackForce;
                 return;
             }
 

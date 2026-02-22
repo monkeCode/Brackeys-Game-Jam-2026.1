@@ -111,7 +111,7 @@ MonoBehaviour:
   <Speed>k__BackingField: 1.5
   <AttackRange>k__BackingField: 1
   <ViewRange>k__BackingField: 2
-  <Armor>k__BackingField: 2
+  <Armor>k__BackingField: 0
   <AttackCooldown>k__BackingField: 1
   <Type>k__BackingField: 0
   <Command>k__BackingField: 0
@@ -120,8 +120,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  knockbackForce: 0
-  knockbackDuration: 0.25
+  knockbackForce: 0.2
+  knockbackDuration: 0.2
   projectilePrefab: {fileID: 6272953555761531290, guid: 80982c7b8c8e8bac597a3c6d0e2aee79, type: 3}
   idleSprite: {fileID: 8504486635398764738, guid: e7eef93a0c783daf79dbc40011543ee1, type: 3}
   attackSprite: {fileID: -4865430254978118309, guid: e7eef93a0c783daf79dbc40011543ee1, type: 3}

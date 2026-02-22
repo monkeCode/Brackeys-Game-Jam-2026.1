@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.BaseBuilding
   <Health>k__BackingField: 100
-  <Cost>k__BackingField: 200
+  <Cost>k__BackingField: 250
   <Size>k__BackingField: {x: 2, y: 1}
   <Command>k__BackingField: 0
   <MaxHealth>k__BackingField: 100
@@ -57,6 +57,7 @@ MonoBehaviour:
   mergeClip: {fileID: 8300000, guid: 314f155fdf19b29efa00de92c4ef97a7, type: 3}
   actions:
   - {fileID: 11400000, guid: 4e4381a1025dbfa4eb1fa938cda7a989, type: 2}
+  - {fileID: 11400000, guid: 9461832bb62cd019d8960c29a1484aaf, type: 2}
   <Lb>k__BackingField: {fileID: 8123075857071983317}
   <Rb>k__BackingField: {fileID: 2352331253975630233}
   <Rt>k__BackingField: {fileID: 1434953048897210885}

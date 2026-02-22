@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.ProduceUnitAction
   <ActionCooldownTime>k__BackingField: 40
   <Unit>k__BackingField: {fileID: 3103782800599548595, guid: 5f672c3bbc29c1449b85e7313cfa3dbd, type: 3}
-  UpPercent: 4
+  UpPercent: 15

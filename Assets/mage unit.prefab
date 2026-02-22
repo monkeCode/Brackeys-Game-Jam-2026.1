@@ -120,7 +120,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  knockbackForce: 2
+  knockbackForce: 0.2
   knockbackDuration: 0.25
   projectilePrefab: {fileID: 7750574733402758417, guid: 9ef63e1918bbe2e23bfb952ae1f6e58e, type: 3}
   idleSprite: {fileID: 777539681757656896, guid: acd4ef485a0401bdd882123f6097975d, type: 3}

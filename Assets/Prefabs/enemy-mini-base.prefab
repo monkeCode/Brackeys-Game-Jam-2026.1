@@ -160,7 +160,9 @@ MonoBehaviour:
   upgradeClip: {fileID: 0}
   destroyClip: {fileID: 0}
   mergeClip: {fileID: 0}
-  actions: []
+  actions:
+  - {fileID: 11400000, guid: abd361cb032bad8149b7d76975b59fe9, type: 2}
+  - {fileID: 11400000, guid: 6782937682a1e52febf0437af308c95a, type: 2}
   <Lb>k__BackingField: {fileID: 0}
   <Rb>k__BackingField: {fileID: 0}
   <Rt>k__BackingField: {fileID: 0}

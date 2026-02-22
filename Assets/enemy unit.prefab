@@ -107,19 +107,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Units.BaseUnit
   <Health>k__BackingField: 10
-  <Attack>k__BackingField: 10
+  <Attack>k__BackingField: 3
   <Speed>k__BackingField: 0.6
-  <AttackRange>k__BackingField: 2
+  <AttackRange>k__BackingField: 3
   <ViewRange>k__BackingField: 4
   <Armor>k__BackingField: 0
   <AttackCooldown>k__BackingField: 3
   <Type>k__BackingField: 1
   <Command>k__BackingField: 1
   <MaxHealth>k__BackingField: 0
+  <Name>k__BackingField: 
   enemyLayer:
     serializedVersion: 2
     m_Bits: 576
-  knockbackForce: 3
+  knockbackForce: 0.5
   knockbackDuration: 0.25
   projectilePrefab: {fileID: 7750574733402758417, guid: 9ef63e1918bbe2e23bfb952ae1f6e58e, type: 3}
   idleSprite: {fileID: 674897829043029118, guid: fdd17c35dbc8744efbf78d8de4cfc640, type: 3}
@@ -140,7 +141,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

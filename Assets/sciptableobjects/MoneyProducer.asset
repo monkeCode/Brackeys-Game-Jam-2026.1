@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.ProduceMoneyAction
   <ActionCooldownTime>k__BackingField: 15
   <Amount>k__BackingField: 6
-  <UpPercent>k__BackingField: 5
+  <UpPercent>k__BackingField: 15
   <MoneyPrefab>k__BackingField: {fileID: 7630867262518908032, guid: c9d3480d45a4ac06f93d564c937ab958, type: 3}

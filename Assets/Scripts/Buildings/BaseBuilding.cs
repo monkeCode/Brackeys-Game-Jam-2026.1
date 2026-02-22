@@ -71,8 +71,8 @@ namespace Buildings
             if (Health < 0)
             {
                 Health = 0;
+                Destroy();
             }
-            Destroy();
         }
 
         public void UpdateTimeTick()
@@ -220,7 +220,7 @@ namespace Buildings
             Lvl++;
             if(Command == Command.Player)
             {
-                MaxHealth += (int)(MaxHealth * 0.05f);
+                MaxHealth += (int)(MaxHealth * 0.15f);
                 Repair(MaxHealth);
                 if (upgradeClip != null)
                     audioSource.PlayOneShot(upgradeClip);

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.BaseBuilding
   <Health>k__BackingField: 50
-  <Cost>k__BackingField: 50
+  <Cost>k__BackingField: 75
   <Size>k__BackingField: {x: 2, y: 1}
   <Command>k__BackingField: 0
   <MaxHealth>k__BackingField: 50
