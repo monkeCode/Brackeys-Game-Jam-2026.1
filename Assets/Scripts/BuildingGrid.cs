@@ -140,11 +140,16 @@ public class BuildingGrid : MonoBehaviour
     private PlaceTaken IsPlaceTaken(int placeX, int placeY)
     {
         int n = 0;
+        HashSet<BaseBuilding> uniqueBuildings = new();
         for (int x = 0; x < building.Size.x; x++)
         {
             for (int y = 0; y < building.Size.y; y++)
             {
-                if (grid[placeX + x, placeY + y] != null) n++;
+                if (grid[placeX + x, placeY + y] != null)
+                {
+                    n++;
+                    uniqueBuildings.Add(grid[placeX + x, placeY + y]);
+                }
             }
         }
         if (n < building.Size.x * building.Size.y)
@@ -153,7 +158,14 @@ public class BuildingGrid : MonoBehaviour
         }
         else
         {
-            return PlaceTaken.FullyTaken;
+            if (uniqueBuildings.Count <= 1)
+            {
+                return PlaceTaken.FullyTaken;
+            }
+            else
+            {
+                return PlaceTaken.PartiallyTaken;
+            }
         }
     }
 
