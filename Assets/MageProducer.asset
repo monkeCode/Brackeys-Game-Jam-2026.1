@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3f98a1bca04ff0639a466c1a03abe7a, type: 3}
-  m_Name: UnitsProducer
+  m_Name: MageProducer
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.ProduceUnitAction
   <ActionCooldownTime>k__BackingField: 10
-  <Unit>k__BackingField: {fileID: 4649541242082568172, guid: da8f01feeafdc9cfcb92dc16068659b8, type: 3}
+  <Unit>k__BackingField: {fileID: 1981086818541025885, guid: 2334fb5e125910541adc0c5ebf983534, type: 3}
   UpPercent: 0

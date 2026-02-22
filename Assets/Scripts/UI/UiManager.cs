@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 
 public class UiManager : MonoBehaviour
 {
-    
-    
-    public static UiManager Instance {get; private set;}
+
+
+    public static UiManager Instance { get; private set; }
 
     [SerializeField] private BuildingUI buildingUI;
 
@@ -29,6 +29,11 @@ public class UiManager : MonoBehaviour
         buildingUI.gameObject.SetActive(true);
         buildingUI.ShowUi(building);
         // buildingUI.transform.position = building.transform.position + Vector3.up * 10;
+    }
+
+    public void HideBuildingUi()
+    {
+        buildingUI.gameObject.SetActive(false);
     }
 
 }

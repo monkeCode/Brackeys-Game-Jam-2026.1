@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e371a330218e041b0ae6199fb85353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
-  startScene: testAlex
+  startScene: map
   optionsScene: OptionsMenu
 --- !u!224 &1523635096 stripped
 RectTransform:

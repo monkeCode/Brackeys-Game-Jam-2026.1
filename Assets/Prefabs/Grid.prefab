@@ -105,7 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19010fcab4874094ab4db70785dfaabd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingGrid
-  GridSize: {x: 20, y: 10}
+  CeilFiller: {fileID: 0}
+  GridSize: {x: 12, y: 4}
   mainCamera: {fileID: 0}
 --- !u!82 &5283163144242005904
 AudioSource:

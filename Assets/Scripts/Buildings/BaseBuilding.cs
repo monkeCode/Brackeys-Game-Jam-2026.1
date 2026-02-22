@@ -13,7 +13,7 @@ using UnityEngine.EventSystems;
 namespace Buildings
 {
     [RequireComponent(typeof(AudioSource))]
-    public class BaseBuilding : MonoBehaviour, IBuilding, IDamageable, IMergable< BaseBuilding>, IPointerClickHandler
+    public class BaseBuilding : MonoBehaviour, IBuilding, IDamageable, IMergable<BaseBuilding>, IPointerClickHandler
     {
         [field: SerializeField] public int Health { get; protected set; }
 
@@ -31,25 +31,25 @@ namespace Buildings
 
         [SerializeField] protected List<BuildingAction> actions;
 
-        public int Lvl {get; protected set;}
+        public int Lvl { get; protected set; }
 
         public int UpPrice => (int)Math.Ceiling(Math.Pow(1.10, Lvl) * Cost);
 
-        [field: SerializeField] public SpriteRenderer Lb {get; private set;}
-        [field: SerializeField] public SpriteRenderer Rb {get; private set;}
-        [field: SerializeField] public SpriteRenderer Rt {get; private set;}
-        [field: SerializeField] public SpriteRenderer Lt {get; private set;}
+        [field: SerializeField] public SpriteRenderer Lb { get; private set; }
+        [field: SerializeField] public SpriteRenderer Rb { get; private set; }
+        [field: SerializeField] public SpriteRenderer Rt { get; private set; }
+        [field: SerializeField] public SpriteRenderer Lt { get; private set; }
 
         private AudioSource audioSource;
 
         [ContextMenu("Destroy")]
         public void Destroy()
         {
-            if(Command == Command.Player)
+            if (Command == Command.Player)
             {
                 ResourcesManager.Instance.DeletePlayerBuilding(this);
             }
-            else if(Command == Command.Enemy)
+            else if (Command == Command.Enemy)
             {
                 ResourcesManager.Instance.DeleteEnemyBuilding(this);
             }
@@ -82,7 +82,7 @@ namespace Buildings
                 Health = MaxHealth;
             }
         }
-        
+
         private void InitActions()
         {
             actions = actions.Select(x => Instantiate(x)).ToList();
@@ -93,7 +93,7 @@ namespace Buildings
         {
             InitActions();
 
-            if(Command == Command.Player)
+            if (Command == Command.Player)
             {
                 ResourcesManager.Instance.AddPlayerBuilding(this);
             }
@@ -130,7 +130,7 @@ namespace Buildings
 
         public void SetActions(ICollection<IBuildingAction> actions)
         {
-            foreach(var action in this.actions)
+            foreach (var action in this.actions)
             {
                 Destroy(action);
             }
@@ -149,18 +149,20 @@ namespace Buildings
         }
         public void Merge(BaseBuilding first, BaseBuilding second)
         {
-            MaxHealth = UnityEngine.Random.Range(math.min(first.MaxHealth, second.MaxHealth), math.max(first.MaxHealth, second.MaxHealth)+1);
+            MaxHealth = UnityEngine.Random.Range(math.min(first.MaxHealth, second.MaxHealth), math.max(first.MaxHealth, second.MaxHealth) + 1);
             Health = math.min((int)((first.Health + second.Health) / 2.0f), MaxHealth);
             Command = first.Command;
 
-            float mean = (first.Actions.Count + first.Actions.Count) / 2.0f;
-            int actionsCount = (int)UnityEngine.Random.Range(math.min(math.floor(mean)-1,1), math.ceil(mean)*2);
+            // float mean = (first.Actions.Count + second.Actions.Count) / 2.0f;
+            // int actionsCount = (int)UnityEngine.Random.Range(math.min(math.floor(mean)-1,1), math.ceil(mean)*2);
+            int actionsCount = first.Actions.Count + second.Actions.Count;
+            actionsCount = actionsCount >= 4 ? 4 : actionsCount;
             Debug.Log(actionsCount);
-            var totalActions =  first.actions.ToList();
+            var totalActions = first.actions.ToList();
             totalActions.AddRange(second.actions);
             List<BuildingAction> newActions = new();
 
-            for(int i = 0; i < actionsCount;i++)
+            for (int i = 0; i < actionsCount; i++)
             {
                 int index = UnityEngine.Random.Range(0, totalActions.Count);
                 newActions.Add(totalActions[index]);
@@ -171,16 +173,17 @@ namespace Buildings
 
             static T ChooseOneOf<T>(T one, T two)
             {
-                if(UnityEngine.Random.value > 0.5)
+                if (UnityEngine.Random.value > 0.5)
                     return one;
                 return two;
-            };
+            }
+            ;
 
             Lb.sprite = ChooseOneOf(first.Lb.sprite, second.Lb.sprite);
             Rb.sprite = ChooseOneOf(first.Rb.sprite, second.Rb.sprite);
             Rt.sprite = ChooseOneOf(first.Rt.sprite, second.Rt.sprite);
             Lt.sprite = ChooseOneOf(first.Lt.sprite, second.Lt.sprite);
-            
+
         }
 
         public override string ToString()
@@ -201,14 +204,14 @@ namespace Buildings
             MaxHealth += (int)(MaxHealth * 0.05f);
             Repair(MaxHealth);
             Debug.Log($"Up to {Lvl}");
-            if(upgradeClip != null)
+            if (upgradeClip != null)
                 audioSource.PlayOneShot(upgradeClip);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            transform.DOScale(new Vector2(1.1f,1.1f), 0.5f).SetLoops(2, LoopType.Yoyo).OnComplete(() => transform.localScale = Vector3.one);
-            if(Command == Command.Player)
+            transform.DOScale(new Vector2(1.1f, 1.1f), 0.5f).SetLoops(2, LoopType.Yoyo).OnComplete(() => transform.localScale = Vector3.one);
+            if (Command == Command.Player)
             {
                 Debug.Log("click");
                 UiManager.Instance.ShowBuildingUi(this);

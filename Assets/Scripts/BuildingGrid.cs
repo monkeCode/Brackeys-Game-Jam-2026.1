@@ -32,11 +32,11 @@ public class BuildingGrid : MonoBehaviour
     {
         grid = new BaseBuilding[GridSize.x, GridSize.y];
         audioSource = GetComponent<AudioSource>();
-        for(int x = 0; x < GridSize.x; x++)
+        for (int x = 0; x < GridSize.x; x++)
         {
-            for(int y = 0; y < GridSize.y; y++)
+            for (int y = 0; y < GridSize.y; y++)
             {
-                places.Add(Instantiate(CeilFiller, new Vector3(x,y,0), Quaternion.identity));
+                places.Add(Instantiate(CeilFiller, new Vector3(x, y, 0), Quaternion.identity));
             }
         }
     }
@@ -44,7 +44,7 @@ public class BuildingGrid : MonoBehaviour
 
     public void StartPlacingBuilding(BaseBuilding buildingPrefab)
     {
-        foreach(var p in places)
+        foreach (var p in places)
         {
             p.SetActive(true);
         }
@@ -78,9 +78,9 @@ public class BuildingGrid : MonoBehaviour
 
     private void Update()
     {
-        if(flyingBuilding == null)
+        if (flyingBuilding == null)
         {
-            foreach(var p in places)
+            foreach (var p in places)
             {
                 p.SetActive(false);
             }
@@ -89,6 +89,7 @@ public class BuildingGrid : MonoBehaviour
         {
             Destroy(flyingBuilding);
             building = null;
+            UiManager.Instance.HideBuildingUi();
         }
         else if (flyingBuilding != null)
         {
