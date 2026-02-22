@@ -106,16 +106,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1684121f8fa3e2ae95d485a13118c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Units.BaseUnit
-  <Health>k__BackingField: 1
+  <Health>k__BackingField: 3
   <Attack>k__BackingField: 1
-  <Speed>k__BackingField: 1
-  <AttackRange>k__BackingField: 2
-  <ViewRange>k__BackingField: 3
-  <Armor>k__BackingField: 0
-  <AttackCooldown>k__BackingField: 1
+  <Speed>k__BackingField: 0.9
+  <AttackRange>k__BackingField: 3
+  <ViewRange>k__BackingField: 4
+  <Armor>k__BackingField: 1
+  <AttackCooldown>k__BackingField: 2
   <Type>k__BackingField: 1
   <Command>k__BackingField: 0
   <MaxHealth>k__BackingField: 0
+  <Name>k__BackingField: Mage
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

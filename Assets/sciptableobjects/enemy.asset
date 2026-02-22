@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f98a1bca04ff0639a466c1a03abe7a, type: 3}
   m_Name: enemy
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.ProduceUnitAction
-  <ActionCooldownTime>k__BackingField: 20
+  <ActionCooldownTime>k__BackingField: 40
   <Unit>k__BackingField: {fileID: 2340198011282899278, guid: 45cbdb9c4c0be724bb814ac70da49f39, type: 3}
-  UpPercent: 0
+  UpPercent: 5

@@ -228,17 +228,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4366885961484103692, guid: b1da06e47e6f1b5459e65a627a725685, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -10.1377
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366885961484103692, guid: b1da06e47e6f1b5459e65a627a725685, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -11
+      value: -21.241
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366885961484103692, guid: b1da06e47e6f1b5459e65a627a725685, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4366885961484103692, guid: b1da06e47e6f1b5459e65a627a725685, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -49.5
+      value: -85
       objectReference: {fileID: 0}
     - target: {fileID: 5046479387199342926, guid: b1da06e47e6f1b5459e65a627a725685, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 5a3f99ac57e9a25b09f16a9066024d45, type: 3}
+    - target: {fileID: 6628550050514336419, guid: b1da06e47e6f1b5459e65a627a725685, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6628550050514336419, guid: b1da06e47e6f1b5459e65a627a725685, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -177
+      objectReference: {fileID: 0}
     - target: {fileID: 7801818024528117175, guid: b1da06e47e6f1b5459e65a627a725685, type: 3}
       propertyPath: m_Name
       value: GameOverCanvas

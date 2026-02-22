@@ -221,10 +221,10 @@ public class BuildingGrid : MonoBehaviour
         if (status == PlaceTaken.FullyTaken)
         {
             MergeBuildings(building, grid[placeX, placeY]);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
+            // if (!audioSource.isPlaying)
+            // {
+            //     audioSource.Play();
+            // }
         }
         Destroy(flyingBuilding);
         building = null;

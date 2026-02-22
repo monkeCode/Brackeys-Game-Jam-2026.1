@@ -412,17 +412,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.BaseBuilding
   <Health>k__BackingField: 100
-  <Cost>k__BackingField: 100
+  <Cost>k__BackingField: 150
   <Size>k__BackingField: {x: 1, y: 1}
   <Command>k__BackingField: 0
   <MaxHealth>k__BackingField: 100
-  upgradeClip: {fileID: 0}
+  upgradeClip: {fileID: 8300000, guid: a4878b007d9722cfd9fa7fac5bd3a435, type: 3}
+  destroyClip: {fileID: 8300000, guid: de0596c640f0a9a9a83dc8b9d3d67471, type: 3}
+  mergeClip: {fileID: 8300000, guid: 314f155fdf19b29efa00de92c4ef97a7, type: 3}
   actions:
   - {fileID: 11400000, guid: 17ec40881e13b9c458aef5112d4cc7d6, type: 2}
   <Lb>k__BackingField: {fileID: 4057057154545550992}
   <Rb>k__BackingField: {fileID: 7713958558683547360}
   <Rt>k__BackingField: {fileID: 4213338148645197276}
   <Lt>k__BackingField: {fileID: 6535733189909566758}
+  autoUpEvry: 2
 --- !u!61 &6956175239239821276
 BoxCollider2D:
   m_ObjectHideFlags: 0

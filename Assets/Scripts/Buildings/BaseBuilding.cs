@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,8 @@ namespace Buildings
         [field: SerializeField] public int MaxHealth { get; protected set; }
 
         [SerializeField] private AudioClip upgradeClip;
+        [SerializeField] private AudioClip destroyClip;
+        [SerializeField] private AudioClip mergeClip;
 
         [SerializeField] protected List<BuildingAction> actions;
 
@@ -40,11 +43,17 @@ namespace Buildings
         [field: SerializeField] public SpriteRenderer Rt { get; private set; }
         [field: SerializeField] public SpriteRenderer Lt { get; private set; }
 
+        [Header("Enemy params")]
+        [SerializeField] private int autoUpEvry = 2;
+        private int cntUp = 0;
+
         private AudioSource audioSource;
 
         [ContextMenu("Destroy")]
         public void Destroy()
         {
+            if(destroyClip != null)
+                audioSource.PlayOneShot(destroyClip);
             if (Command == Command.Player)
             {
                 ResourcesManager.Instance.DeletePlayerBuilding(this);
@@ -71,6 +80,11 @@ namespace Buildings
             foreach (var action in Actions)
             {
                 action.UpdateTimeTick(gameObject);
+            }
+            cntUp = (cntUp+1) % autoUpEvry;
+            if(Command == Command.Enemy && (cntUp == 0))
+            {
+                Up();
             }
         }
 
@@ -102,6 +116,7 @@ namespace Buildings
                 ResourcesManager.Instance.AddEnemyBuilding(this);
             }
             Timer.Instance.onTimerUpdate += UpdateTimeTick;
+            audioSource = GetComponent<AudioSource>();
         }
 
         protected void Update()
@@ -149,6 +164,9 @@ namespace Buildings
         }
         public void Merge(BaseBuilding first, BaseBuilding second)
         {
+            if(mergeClip != null)
+                audioSource.PlayOneShot(mergeClip);
+
             MaxHealth = UnityEngine.Random.Range(math.min(first.MaxHealth, second.MaxHealth), math.max(first.MaxHealth, second.MaxHealth) + 1);
             Health = math.min((int)((first.Health + second.Health) / 2.0f), MaxHealth);
             Command = first.Command;
@@ -169,8 +187,7 @@ namespace Buildings
                 totalActions.RemoveAt(index);
             }
             actions.Clear();
-            actions.AddRange(newActions);
-
+            actions.AddRange(newActions.Select(act => Instantiate(act)));
             static T ChooseOneOf<T>(T one, T two)
             {
                 if (UnityEngine.Random.value > 0.5)
@@ -201,11 +218,18 @@ namespace Buildings
         public void Up()
         {
             Lvl++;
-            MaxHealth += (int)(MaxHealth * 0.05f);
-            Repair(MaxHealth);
+            if(Command == Command.Player)
+            {
+                MaxHealth += (int)(MaxHealth * 0.05f);
+                Repair(MaxHealth);
+                if (upgradeClip != null)
+                    audioSource.PlayOneShot(upgradeClip);
+            }
+            foreach(var action in actions)
+            {
+                action.Up();
+            }
             Debug.Log($"Up to {Lvl}");
-            if (upgradeClip != null)
-                audioSource.PlayOneShot(upgradeClip);
         }
 
         public void OnPointerClick(PointerEventData eventData)

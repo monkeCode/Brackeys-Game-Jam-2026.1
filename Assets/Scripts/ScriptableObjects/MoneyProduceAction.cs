@@ -21,5 +21,10 @@ namespace Buildings
             Amount += (int)(UpPercent/100.0f * Amount);
             ActionCooldownTime -= (int)(UpPercent/100.0f * ActionCooldownTime);
         }
+
+        public override string ToString()
+        {
+            return $"Makes money: {Amount}";
+        }
     }
 }

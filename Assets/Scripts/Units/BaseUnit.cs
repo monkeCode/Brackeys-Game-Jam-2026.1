@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Merger;
 using UnityEngine;
 
@@ -21,6 +23,7 @@ namespace Units
         [field: SerializeField] public virtual Command Command {get; protected set;}
 
         [field: SerializeField]  public virtual int MaxHealth {get; protected set;}
+        [field: SerializeField]  public String Name {get; protected set;}
 
         [SerializeField] protected LayerMask enemyLayer;
 
@@ -125,7 +128,7 @@ namespace Units
             }
 
             // Выбираем случайную цель
-            float randomPoint = Random.value * totalWeight;
+            float randomPoint = UnityEngine.Random.value * totalWeight;
 
             foreach (var (target, weight) in weightedTargets)
             {
@@ -152,9 +155,10 @@ namespace Units
 
         private void Start()
         {
-            // Initialize unit properties here
-            rb = GetComponent<Rigidbody2D>();
             sp = GetComponent<SpriteRenderer>();
+            var toScale = transform.localScale;
+            transform.localScale = Vector3.zero;
+            transform.DOScale(toScale, 0.5f);
         }
 
         private void Update()

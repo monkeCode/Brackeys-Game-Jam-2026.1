@@ -152,17 +152,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f67f611ce6ab4f197cba4efcb2c81b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Buildings.BaseBuilding
-  <Health>k__BackingField: 0
+  <Health>k__BackingField: 300
   <Cost>k__BackingField: 0
   <Size>k__BackingField: {x: 0, y: 0}
   <Command>k__BackingField: 1
-  <MaxHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 300
   upgradeClip: {fileID: 0}
+  destroyClip: {fileID: 0}
+  mergeClip: {fileID: 0}
   actions: []
   <Lb>k__BackingField: {fileID: 0}
   <Rb>k__BackingField: {fileID: 0}
   <Rt>k__BackingField: {fileID: 0}
   <Lt>k__BackingField: {fileID: 0}
+  autoUpEvry: 100
 --- !u!82 &2451611968208196312
 AudioSource:
   m_ObjectHideFlags: 0
@@ -172,7 +175,7 @@ AudioSource:
   m_GameObject: {fileID: 353664640439335145}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5007838124360173433, guid: a69de596b5a6e2b4b869677e2784cea6, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

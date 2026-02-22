@@ -17,6 +17,11 @@ namespace Buildings
         {
             ActionCooldownTime -= (int)(UpPercent/100.0f * ActionCooldownTime);
         }
+
+        public override string ToString()
+        {
+            return $"Spawns {Unit.Name}";
+        }
     }
 
 }
